@@ -7,800 +7,847 @@
 <meta name="description" content="Miguel Jay Faustino: Business Analyst moving into data engineering. Open to remote junior data engineering and analytics engineering roles. Projects, experience, resume and verifiable certifications.">
 <meta name="author" content="Miguel Jay Faustino">
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#E7ECE3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A221D" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://certjay.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://certjay.github.io/">
-<meta property="og:title" content="Miguel Jay Faustino · Business Analyst → Data Engineer">
-<meta property="og:description" content="I build the data systems behind the processes I document. Open to remote junior data engineering and analytics engineering roles.">
+<meta property="og:title" content="Miguel Jay Faustino, Business Analyst moving into data engineering">
+<meta property="og:description" content="I make messy operational records trustworthy. Open to remote junior data engineering and analytics engineering roles.">
 <meta property="og:image" content="https://certjay.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://certjay.github.io/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232445C2'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23E7ECE3'/%3E%3Cpath d='M9 0v32M11 0v32' stroke='%23B23A2B' stroke-width='1'/%3E%3Cpath d='M0 11h32M0 21h32' stroke='%23C3CFC0'/%3E%3Cpath d='M15 17l3 3 7-9' fill='none' stroke='%232C6E49' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..900,0..1,0..1,0..1&display=swap" rel="stylesheet">
 <style>
-/* ===== Tokens =====
-   Every color, space, radius and type size below comes from this block.
-   Spacing is a 4px-based scale; type uses a small fixed scale plus two fluid display sizes. */
+/* ============================================================
+   LEDGER — design tokens
+   Every color has a job in the data:
+     red   = rejected / quarantined, and the margin rule
+     green = validated and loaded
+     blue  = a value that was fixed (pencil correction)
+   ============================================================ */
 :root{
-  /* color */
-  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#13203A; --muted:#55627B; --line:#DCE2EB;
-  --accent:#2445C2; --accent-ink:#FFFFFF; --accent-soft:#E7ECFB;
-  --ok:#1D7550; --ok-soft:#E0F1E8; --bad:#B3382C; --warn:#985A0C; --warn-soft:#F6EBD8; --plan:#55627B; --plan-soft:#ECEFF4;
-  /* type */
-  --display:'Schibsted Grotesk','Helvetica Neue',Arial,sans-serif;
-  --body:'IBM Plex Sans','Segoe UI',Roboto,Arial,sans-serif;
-  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
-  --t-xs:12px; --t-sm:14px; --t-md:16px; --t-lg:19px; --t-xl:clamp(26px,4vw,34px); --t-2xl:clamp(40px,7vw,64px);
-  /* space */
-  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px;
-  /* shape */
-  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-pill:999px;
-  --bw:1px;
-  --gutter:max(16px,env(safe-area-inset-left,0px));
+  --paper:#E7ECE3; --sheet:#F4F7F1; --rule:#C3CFC0; --rule-2:#A6B5A2;
+  --ink:#1C2620; --ink-2:#4B5B50;
+  --red:#B23A2B; --red-rule:#D58A7F; --red-wash:#F2DDD8;
+  --green:#2C6E49; --green-wash:#DCEADF;
+  --blue:#2E5A87; --blue-wash:#DCE6F0;
+  --btn-ink:#F4F7F1;
+
+  --body:'Recursive',ui-sans-serif,'Segoe UI',Roboto,Arial,sans-serif;
+  /* type scale (classic 12–14–17–21–28–36–48/68) */
+  --t-xs:12.5px; --t-sm:14px; --t-md:17px; --t-lg:21px; --t-xl:28px; --t-2xl:clamp(28px,4vw,36px); --t-3xl:clamp(44px,6.2vw,68px);
+  /* space (4px base) */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px; --s-20:80px;
+  /* the ledger margin: dates and pen notes live here */
+  --m:120px;
+  --line:1.55em;
 }
+@media (max-width:900px){:root{--m:28px}}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0C111A; --surface:#141B27; --ink:#E5E9F1; --muted:#9BA6BB; --line:#253042;
-  --accent:#8FA7FF; --accent-ink:#0C111A; --accent-soft:#1B2548;
-  --ok:#72D3A6; --ok-soft:#12302A; --bad:#F08A7E; --warn:#E8B56C; --warn-soft:#33250F; --plan:#9BA6BB; --plan-soft:#1C2433;
+  --paper:#1A221D; --sheet:#212B25; --rule:#33433A; --rule-2:#4A5D51;
+  --ink:#E4EBE2; --ink-2:#A9B7AC;
+  --red:#EE8D80; --red-rule:#7E3A31; --red-wash:#3A2521;
+  --green:#7CC79A; --green-wash:#1E3528;
+  --blue:#95BBE3; --blue-wash:#1F2F41;
+  --btn-ink:#1A221D;
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0C111A; --surface:#141B27; --ink:#E5E9F1; --muted:#9BA6BB; --line:#253042;
-  --accent:#8FA7FF; --accent-ink:#0C111A; --accent-soft:#1B2548;
-  --ok:#72D3A6; --ok-soft:#12302A; --bad:#F08A7E; --warn:#E8B56C; --warn-soft:#33250F; --plan:#9BA6BB; --plan-soft:#1C2433;
+  --paper:#1A221D; --sheet:#212B25; --rule:#33433A; --rule-2:#4A5D51;
+  --ink:#E4EBE2; --ink-2:#A9B7AC;
+  --red:#EE8D80; --red-rule:#7E3A31; --red-wash:#3A2521;
+  --green:#7CC79A; --green-wash:#1E3528;
+  --blue:#95BBE3; --blue-wash:#1F2F41;
+  --btn-ink:#1A221D;
   color-scheme:dark}
 
-/* ===== Base ===== */
+/* ---------- base ---------- */
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
+html{scroll-behavior:smooth;scroll-padding-top:64px;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--t-md);line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r-sm)}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.015em}
-h2{font-size:var(--t-xl);font-weight:700;line-height:1.15}
-h3{font-size:var(--t-lg);font-weight:700;line-height:1.3}
-p{margin:0}
-ul{margin:0;padding-left:var(--s-5)}
-.wrap{max-width:1080px;margin:0 auto;padding-left:var(--gutter);padding-right:max(16px,env(safe-area-inset-right,0px))}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:var(--t-md);line-height:1.55;font-variation-settings:"CASL" 0,"MONO" 0;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-weight:750;letter-spacing:-.018em;text-wrap:balance}
+h2{font-size:var(--t-2xl);line-height:1.15}
+h3{font-size:var(--t-lg);line-height:1.3}
+p,ul,ol,dl,dd{margin:0}
+ul{padding-left:1.1em}
+a{color:var(--ink);text-decoration-color:var(--rule-2);text-decoration-thickness:1.5px;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ink)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.muted{color:var(--ink-2)}
+.data{font-variation-settings:"MONO" 1,"CASL" 0;font-variant-numeric:tabular-nums}
+/* auditor's pen: the casual axis, slanted */
+.pen{font-variation-settings:"CASL" 1,"MONO" 0,"slnt" -11,"CRSV" 1;font-weight:560}
+.pen.red{color:var(--red)} .pen.blue{color:var(--blue)} .pen.green{color:var(--green)}
 
-/* ===== Primitives ===== */
-.eyebrow{font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s-3)}
-.label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.lede{color:var(--muted);max-width:64ch;margin-top:var(--s-3)}
-.muted{color:var(--muted)}
-.card{background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r-lg)}
+/* ---------- the page is a ledger sheet ---------- */
+.ledger{position:relative;max-width:1200px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 calc(var(--m) + 28px)}
+.ledger::before{content:"";position:absolute;top:0;bottom:0;left:var(--m);border-left:1px solid var(--red-rule);box-shadow:-3px 0 0 -2px var(--red-rule);pointer-events:none}
+@media (max-width:900px){.ledger{padding-left:calc(var(--m) + 16px)}}
+/* margin notes: sit in the margin on desktop, inline on small screens */
+.margin{position:absolute;left:calc(-1 * (var(--m) + 28px));width:calc(var(--m) - 14px);text-align:right;font-size:var(--t-sm);line-height:1.35}
+@media (max-width:900px){.margin{position:static;width:auto;text-align:left;display:block;margin-bottom:var(--s-2)}}
 
-/* Button: primary | secondary | ghost; sizes via .btn-sm */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);font:500 15px/1.2 var(--body);padding:11px 16px;border-radius:var(--r-md);text-decoration:none;border:var(--bw) solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer;transition:border-color .15s,background-color .15s,transform .15s}
-.btn:hover{border-color:var(--accent)}
-.btn:active{transform:translateY(1px)}
-.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn-primary:hover{filter:brightness(1.08)}
-.btn-ghost{background:transparent;border-color:transparent;color:var(--muted)}
-.btn-ghost:hover{color:var(--ink);background:var(--accent-soft);border-color:transparent}
-.btn-sm{font-size:var(--t-sm);padding:7px 12px;border-radius:var(--r-sm)}
+section{padding-block:var(--s-20) 0;position:relative}
+.section-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--s-3) var(--s-6);padding-bottom:var(--s-3);border-bottom:2px solid var(--ink);margin-bottom:var(--s-8)}
+.section-head p{color:var(--ink-2);font-size:var(--t-sm)}
+.section-head.later{margin-top:var(--s-8)}
+
+/* ---------- buttons: one ink button, everything else is a link ---------- */
+.btn{display:inline-flex;align-items:center;gap:var(--s-2);font:inherit;font-size:15px;font-weight:600;padding:10px 16px;border-radius:3px;border:1.5px solid var(--ink);background:var(--ink);color:var(--btn-ink);text-decoration:none;cursor:pointer;line-height:1.2}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn.quiet{background:transparent;color:var(--ink);border-color:var(--rule-2)}
+.btn.quiet:hover{border-color:var(--ink)}
+.btn.small{font-size:var(--t-sm);padding:6px 11px}
 .btn svg{width:16px;height:16px;flex:none}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2) var(--s-5)}
+.links a{font-weight:560}
 
-/* Status pill: ok | wip | plan | accent */
-.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;font-weight:500;padding:3px 9px;border-radius:var(--r-pill);white-space:nowrap}
-.pill-ok{background:var(--ok-soft);color:var(--ok)}
-.pill-wip{background:var(--warn-soft);color:var(--warn)}
-.pill-plan{background:var(--plan-soft);color:var(--plan)}
-.pill-accent{background:var(--accent-soft);color:var(--accent)}
-.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+/* ---------- nav ---------- */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);padding-top:env(safe-area-inset-top,0px)}
+.top .ledger{display:flex;align-items:center;gap:var(--s-5);padding-block:10px}
+.top .ledger::before{display:none}
+.brand{font-weight:800;text-decoration:none;white-space:nowrap;letter-spacing:-.01em}
+.top nav{display:flex;gap:var(--s-4);flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font-size:var(--t-sm);color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.top nav a:hover{color:var(--ink)}
+@media (max-width:720px){.top nav{display:none}.top .ledger{justify-content:space-between}}
 
-/* Tag: tech keyword */
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-family:var(--mono);font-size:var(--t-xs);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:2px 7px;color:var(--ink);background:var(--surface)}
+/* ---------- hero ---------- */
+.hero{padding-block:var(--s-12) var(--s-8)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) var(--s-12);align-items:start}
+@media (max-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
+.hero .sheet{margin-top:var(--s-10)}
+.hero h1{font-size:var(--t-3xl);font-weight:850;line-height:.98;letter-spacing:-.03em}
+.hero .role{font-size:var(--t-lg);font-weight:600;margin-top:var(--s-4);line-height:1.35}
+.hero .pitch{max-width:48ch;color:var(--ink-2)}
+.facts{margin-top:var(--s-5);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:var(--s-3) var(--s-6);border-top:1px solid var(--rule);padding-top:var(--s-4)}
+@media (max-width:520px){.facts{grid-template-columns:minmax(0,1fr)}}
+.facts dt{font-size:var(--t-sm);font-weight:700}
+.facts dd{font-size:15px;color:var(--ink-2)}
+.hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-4) var(--s-5);margin-top:var(--s-6)}
 
-/* Section */
-section{padding-block:var(--s-16);border-top:var(--bw) solid var(--line)}
-.section-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:var(--s-3) var(--s-6);margin-bottom:var(--s-8)}
+/* ---------- the live sheet ---------- */
+.sheet{background:var(--sheet);border:1px solid var(--rule-2);border-radius:3px;box-shadow:0 1px 0 var(--rule),0 12px 28px -18px rgba(28,38,32,.35)}
+.sheet-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--s-2) var(--s-4);padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--rule)}
+.sheet-head .file{font-size:var(--t-sm);font-weight:600}
+.sheet-head .note{font-size:var(--t-xs);color:var(--ink-2)}
+.rules{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--rule);align-items:center}
+.rules legend{font-size:var(--t-sm);font-weight:700;padding:0;margin-right:var(--s-2);float:left}
+.rules fieldset{border:0;margin:0;padding:0;display:contents}
+.rule{display:inline-flex;align-items:center;gap:7px;font-size:var(--t-sm);cursor:pointer;user-select:none;padding:3px 0}
+.rule input{appearance:none;-webkit-appearance:none;margin:0;width:17px;height:17px;border:1.5px solid var(--ink-2);border-radius:2px;background:var(--paper);display:grid;place-items:center;cursor:pointer;flex:none}
+.rule input::after{content:"";width:9px;height:5px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg) translate(1px,-1px);opacity:0;transition:opacity .15s}
+.rule input:checked{border-color:var(--green)}
+.rule input:checked::after{opacity:1}
+.rule b{font-weight:700;color:var(--ink-2);font-variation-settings:"MONO" 1}
+.sheet-tools{margin-left:auto;display:flex;gap:var(--s-2)}
 
-/* ===== Nav ===== */
-.nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:var(--bw) solid var(--line);padding-top:env(safe-area-inset-top,0px)}
-.nav .wrap{display:flex;align-items:center;gap:var(--s-4);padding-block:10px}
-.mark{font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
-.mark span{color:var(--accent)}
-.links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
-.links::-webkit-scrollbar{display:none}
-.links a{font-size:var(--t-sm);color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:var(--r-sm);white-space:nowrap}
-.links a:hover{color:var(--ink);background:var(--accent-soft)}
-@media (max-width:640px){.links{display:none}.nav .wrap{justify-content:space-between}}
+.grid-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.cells{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+.cells th,.cells td{padding:6px 10px;border-bottom:1px solid var(--rule);text-align:left;white-space:nowrap;vertical-align:baseline}
+.cells thead th{font-size:var(--t-xs);font-weight:700;color:var(--ink-2);background:var(--paper);border-bottom:1px solid var(--rule-2)}
+.cells .n{width:34px;text-align:right;color:var(--ink-2);border-right:1px solid var(--rule)}
+.cells .mk{width:30px;text-align:center;border-right:1px solid var(--red-rule);font-weight:700}
+.cells td.q{text-align:right}
+.cells td.note{white-space:normal;min-width:150px;font-size:13px;line-height:1.3}
+.cells tr{transition:background-color .35s}
+.cells td span{transition:color .35s,background-color .35s}
+.cells .fix{color:var(--blue);background:var(--blue-wash);border-radius:2px;padding:0 3px;margin:0 -3px}
+.cells tr.loaded .mk{color:var(--green)}
+.cells tr.quarantined{background:var(--red-wash)}
+.cells tr.quarantined .mk{color:var(--red)}
+.cells tr.dropped td:not(.note):not(.mk){color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--ink-2)}
+.cells tr.dropped .mk{color:var(--ink-2)}
+.cells .blank{color:var(--red);font-style:normal}
+.cells tr.dropped td.note{color:var(--ink-2)}
+@media (max-width:620px){
+  table.cells{min-width:0;font-size:13px}
+  .cells th,.cells td{padding:6px 6px}
+  .cells .c-item,.cells .c-serial,.cells .c-cond{display:none}
+  .cells .n{width:26px}.cells .mk{width:22px}
+  .cells td.note{min-width:0}
+  .recon{grid-template-columns:minmax(0,1fr)}.recon .total{justify-self:start}
+}
 
-/* ===== Hero ===== */
-.hero{padding-block:var(--s-12) var(--s-12);border-top:0}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:var(--s-10);align-items:start}
-@media (max-width:880px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-8)}}
-.status{display:inline-flex;align-items:center;gap:var(--s-2);font-size:var(--t-sm);font-weight:500;color:var(--ok);background:var(--ok-soft);padding:5px 12px;border-radius:var(--r-pill);margin-bottom:var(--s-5)}
-.status .dot{animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.status .dot{animation:none}}
-.hero h1{font-size:var(--t-2xl);font-weight:800;line-height:1.02}
-.headline{font-family:var(--display);font-size:clamp(20px,2.8vw,26px);font-weight:700;margin-top:var(--s-3);color:var(--muted)}
-.headline b{color:var(--ink)}
-.thesis{font-size:clamp(17px,2.1vw,19px);line-height:1.55;max-width:44ch;margin-top:var(--s-5)}
-.cta{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-top:var(--s-6)}
+.recon{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s-1) var(--s-6);padding:var(--s-3) var(--s-4) var(--s-4);font-size:var(--t-sm);align-items:baseline}
+.recon .eq{font-weight:600}
+.recon .eq .g{color:var(--green)} .recon .eq .r{color:var(--red)} .recon .eq .d{color:var(--ink-2)}
+.recon .total{text-align:right;font-weight:700;font-size:var(--t-md);border-bottom:3px double var(--ink);padding:0 2px 1px;justify-self:end}
+.recon .total.err{color:var(--red);border-bottom-color:var(--red)}
+.recon .why{grid-column:1/-1;color:var(--ink-2);font-size:13px}
 
-.snapshot{padding:var(--s-6)}
-.snapshot dl{margin:0;display:grid;gap:var(--s-4)}
-.snapshot dt{margin-bottom:2px}
-.snapshot dd{margin:0;font-size:15px;line-height:1.5}
-.snapshot hr{border:0;border-top:var(--bw) solid var(--line);margin:0}
+/* ---------- projects ---------- */
+.project{position:relative;padding:var(--s-8) 0 var(--s-12);border-top:1px solid var(--rule)}
+.project:first-of-type{border-top:0;padding-top:0}
+.project .margin{top:var(--s-8)}
+.project:first-of-type .margin{top:0}
+.project h3{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.project .sub{font-size:var(--t-lg);color:var(--ink-2);margin-top:var(--s-2);max-width:52ch;line-height:1.4}
+.proj-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:var(--s-10);margin-top:var(--s-8)}
+@media (max-width:900px){.proj-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-8)}}
+.proj-grid h4{font-size:var(--t-md);font-weight:750;margin:0 0 var(--s-2)}
+.proj-grid p{max-width:62ch}
+.proj-grid > div > * + h4{margin-top:var(--s-6)}
+.decisions{list-style:none;padding:0;display:grid;gap:var(--s-3);max-width:64ch}
+.decisions li{padding-left:22px;position:relative}
+.decisions li::before{content:"";position:absolute;left:2px;top:.5em;width:9px;height:5px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
+.decisions b{font-weight:700}
 
-/* Proof strip */
-.proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);margin-top:var(--s-12)}
-@media (max-width:880px){.proof{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:420px){.proof{grid-template-columns:minmax(0,1fr)}}
-.stat{padding:var(--s-4) var(--s-5)}
-.stat b{display:block;font-family:var(--display);font-size:28px;font-weight:800;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stat span{display:block;font-size:var(--t-sm);color:var(--muted);line-height:1.45;margin-top:var(--s-1)}
+/* pipeline steps: a real sequence */
+.steps{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:var(--s-2) 0;font-size:var(--t-sm)}
+.steps li{display:flex;align-items:center}
+.steps li span{padding:5px 10px;border:1px solid var(--rule-2);border-radius:2px;background:var(--sheet)}
+.steps li:not(:last-child)::after{content:"";width:18px;height:1px;background:var(--rule-2)}
+.steps li.gate span{border-color:var(--green);color:var(--green);font-weight:600;background:var(--green-wash)}
 
-/* ===== Featured case study ===== */
-.case{padding:var(--s-8);border-color:var(--accent)}
-@media (max-width:640px){.case{padding:var(--s-5)}}
-.case-top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2) var(--s-3);margin-bottom:var(--s-2)}
-.case h3{font-size:clamp(24px,3.2vw,30px)}
-.case .sub{color:var(--muted);margin-top:var(--s-1)}
-.case-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--s-8);margin-top:var(--s-6)}
-@media (max-width:860px){.case-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}}
-.block + .block{margin-top:var(--s-6)}
-.block .label{margin-bottom:var(--s-2)}
-.decisions{list-style:none;padding:0;display:grid;gap:var(--s-3)}
-.decisions li{padding-left:var(--s-5);position:relative}
-.decisions li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--accent)}
-.decisions b{font-weight:600}
+/* spec sheet: a ruled definition table */
+.spec{display:grid;grid-template-columns:auto minmax(0,1fr);border-top:2px solid var(--ink)}
+.spec dt,.spec dd{padding:10px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.spec dt{font-weight:700;padding-right:var(--s-5)}
+.spec dd{color:var(--ink-2)}
+.spec dd .data{color:var(--ink)}
+.proj-links{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5);align-items:center;margin-top:var(--s-6)}
 
-/* Flow diagram: wraps on small screens instead of scrolling */
-.flow{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:var(--s-2) 0;align-items:center}
-.flow li{display:flex;align-items:center;font-family:var(--mono);font-size:var(--t-xs)}
-.flow li span{padding:6px 10px;border:var(--bw) solid var(--line);border-radius:var(--r-sm);background:var(--bg);white-space:nowrap}
-.flow li:not(:last-child)::after{content:"→";color:var(--muted);padding:0 6px}
-.flow li.qa span{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-
-.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-3)}
-.fact{padding:var(--s-3) var(--s-4);border:var(--bw) solid var(--line);border-radius:var(--r-md);background:var(--bg)}
-.fact b{display:block;font-family:var(--display);font-size:var(--t-lg);font-variant-numeric:tabular-nums}
-.fact span{font-size:13px;color:var(--muted)}
-.case-links{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-top:var(--s-6)}
-
-
-/* Project deep-dive (expandable) */
-.case + .case{margin-top:var(--s-4)}
-.case.std{border-color:var(--line)}
-.more{border-top:var(--bw) solid var(--line);margin-top:var(--s-6);padding-top:var(--s-4)}
-.more summary{cursor:pointer;font:500 15px var(--body);color:var(--accent);list-style:none;display:inline-flex;align-items:center;gap:var(--s-2)}
-.more summary::-webkit-details-marker{display:none}
-.more summary::before{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
-.more[open] summary::before{transform:rotate(45deg)}
-.more .label{margin:var(--s-6) 0 var(--s-2)}
-.more p{font-size:15px;max-width:70ch}
-.note,.more p.note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:var(--s-2)}
-.mock{border:var(--bw) solid var(--line);border-radius:var(--r-md);background:var(--bg);padding:var(--s-4);margin-top:var(--s-3)}
-.mock-tabs{display:flex;gap:6px;flex-wrap:wrap}
-.mock-tabs span{font:var(--t-xs) var(--mono);padding:4px 10px;border-radius:var(--r-sm);border:var(--bw) solid var(--line);color:var(--muted)}
-.mock-tabs span.on{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:var(--s-2);margin-top:var(--s-3)}
-.kpi{background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:10px var(--s-3)}
-.kpi b{display:block;font-family:var(--display);font-size:22px;line-height:1.2;font-variant-numeric:tabular-nums}
-.kpi span{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.kpi.ok b{color:var(--ok)}.kpi.warn b{color:var(--warn)}.kpi.bad b{color:var(--bad)}
+/* dashboard deep-dive */
+details.more{margin-top:var(--s-8);border-top:1px dashed var(--rule-2);padding-top:var(--s-4)}
+details.more summary{cursor:pointer;font-weight:650;list-style:none;display:inline-flex;align-items:center;gap:var(--s-2)}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border:1.5px solid var(--ink);border-radius:2px;font-weight:700;line-height:1}
+details.more[open] summary::before{content:"−"}
+details.more h4{font-size:var(--t-md);font-weight:750;margin:var(--s-8) 0 var(--s-2)}
+details.more p{max-width:68ch}
+.mock{border:1px solid var(--rule-2);border-radius:3px;background:var(--sheet);padding:var(--s-4);margin-top:var(--s-3)}
+.mock-tabs{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+.mock-tabs span{padding:4px 10px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2)}
+.mock-tabs span.on{border-color:var(--ink);color:var(--ink);font-weight:650}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:var(--s-2);margin-top:var(--s-3)}
+.kpi{border:1px solid var(--rule);border-radius:2px;padding:10px 12px;background:var(--paper)}
+.kpi b{display:block;font-size:22px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12.5px;color:var(--ink-2)}
+.kpi.ok b{color:var(--green)}.kpi.bad b{color:var(--red)}.kpi.fix b{color:var(--blue)}
 .mock-charts{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s-3);margin-top:var(--s-3)}
 @media (max-width:640px){.mock-charts{grid-template-columns:minmax(0,1fr)}}
-.panel{background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:var(--s-3) var(--s-4)}
-.panel .t{font:600 13px var(--body);margin-bottom:10px}
+.panel{border:1px solid var(--rule);border-radius:2px;padding:var(--s-3) var(--s-4);background:var(--paper)}
+.panel .t{font-size:13px;font-weight:700;margin-bottom:10px}
 .bars .r{display:grid;grid-template-columns:92px minmax(0,1fr) 38px;gap:var(--s-2);align-items:center;font-size:13px;margin-bottom:7px}
-.bars .r small{font:var(--t-xs) var(--mono);color:var(--muted);text-align:right}
-.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
-.bar i{display:block;height:100%;border-radius:5px}
-.bar .w72{width:72%;background:var(--ok)}.bar .w14{width:14%;background:var(--bad)}.bar .w9{width:9%;background:var(--warn)}.bar .w5{width:5%;background:var(--plan)}
+.bars .r small{font-size:12px;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:9px;border-radius:1px;background:var(--rule);overflow:hidden}
+.bar i{display:block;height:100%}
+.bar .w72{width:72%;background:var(--green)}.bar .w14{width:14%;background:var(--red)}.bar .w9{width:9%;background:var(--blue)}.bar .w5{width:5%;background:var(--ink-2)}
 .donut-wrap{display:flex;align-items:center;gap:var(--s-4);flex-wrap:wrap}
-.donut{width:104px;height:104px;border-radius:50%;flex:none;position:relative;background:conic-gradient(var(--accent) 0 46%,var(--ok) 46% 78%,var(--warn) 78% 92%,var(--plan) 92% 100%)}
-.donut::after{content:"";position:absolute;inset:26px;border-radius:50%;background:var(--surface)}
-.legend{font-size:12.5px;color:var(--muted);display:grid;gap:var(--s-1)}
-.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
-.legend .c1{background:var(--accent)}.legend .c2{background:var(--ok)}.legend .c3{background:var(--warn)}.legend .c4{background:var(--plan)}
-.matrix-wrap{overflow-x:auto;margin-top:var(--s-2)}
-.matrix{border-collapse:collapse;font-size:var(--t-sm);min-width:520px;width:100%}
-.matrix th,.matrix td{border:var(--bw) solid var(--line);padding:var(--s-2) 10px;text-align:center}
-.matrix th:first-child,.matrix td:first-child{text-align:left}
-.matrix th{font:500 var(--t-xs) var(--mono);color:var(--muted);background:var(--bg)}
-.matrix td.y{color:var(--ok);font-weight:600}
-.matrix td.n{color:var(--muted)}
-.tabgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px;margin-top:var(--s-2)}
-.tabcard{border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:var(--s-3) var(--s-4);background:var(--bg)}
-.tabcard b{display:block;font-size:14.5px;margin-bottom:6px}
-.tabcard ul{padding-left:var(--s-4);font-size:13.5px;color:var(--muted)}
-.tabcard li{margin-bottom:3px}
+.donut{width:100px;height:100px;border-radius:50%;flex:none;position:relative;background:conic-gradient(var(--ink) 0 46%,var(--green) 46% 78%,var(--blue) 78% 92%,var(--rule-2) 92% 100%)}
+.donut::after{content:"";position:absolute;inset:25px;border-radius:50%;background:var(--paper)}
+.legend{font-size:12.5px;color:var(--ink-2);display:grid;gap:var(--s-1)}
+.legend i{display:inline-block;width:9px;height:9px;margin-right:6px}
+.legend .c1{background:var(--ink)}.legend .c2{background:var(--green)}.legend .c3{background:var(--blue)}.legend .c4{background:var(--rule-2)}
+.small-note{font-size:13px;color:var(--ink-2);margin-top:var(--s-2)}
+.tabgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--s-5) var(--s-6);margin-top:var(--s-2)}
+.tabgrid h5{font-size:15px;margin:0 0 var(--s-1)}
+.tabgrid ul{font-size:14px;color:var(--ink-2)}
 
-/* Building now */
-.next-head{margin:var(--s-12) 0 var(--s-4)}
-.next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-3)}
-@media (max-width:760px){.next{grid-template-columns:minmax(0,1fr)}}
-.mini{padding:var(--s-5);display:flex;flex-direction:column;gap:var(--s-2)}
-.mini .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-2)}
-.mini h3{font-size:17px}
-.mini p{font-size:15px;color:var(--muted)}
-.mini .tags{margin-top:auto;padding-top:var(--s-2)}
-.mini.flag{border-color:var(--accent)}
-.mini .flow{margin-top:var(--s-1)}
+/* ---------- ruled tables (planned work, certifications, access) ---------- */
+.ruled-wrap{overflow-x:auto}
+table.ruled{border-collapse:collapse;width:100%;font-size:15px}
+.ruled th{text-align:left;font-size:var(--t-sm);font-weight:700;padding:0 var(--s-4) var(--s-2) 0;border-bottom:2px solid var(--ink);white-space:nowrap}
+.ruled td{padding:var(--s-3) var(--s-4) var(--s-3) 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.ruled td:first-child{font-weight:700}
+.ruled td.when{white-space:nowrap;color:var(--ink-2)}
+.ruled .m-col{color:var(--ink-2)}
+.ruled.compact{font-size:14px;min-width:520px}
+.ruled.compact td,.ruled.compact th{text-align:center;padding-right:var(--s-3)}
+.ruled.compact td:first-child,.ruled.compact th:first-child{text-align:left}
+.ruled .y{color:var(--green);font-weight:700}
+@media (max-width:700px){.ruled.stack thead{display:none}.ruled.stack tr{display:block;padding:var(--s-3) 0;border-bottom:1px solid var(--rule)}.ruled.stack td{display:block;border:0;padding:0}.ruled.stack td + td{margin-top:2px}}
 
-/* ===== Experience ===== */
-.jobs{display:grid}
-.job{display:grid;grid-template-columns:180px minmax(0,1fr);gap:var(--s-6);padding:var(--s-6) 0;border-top:var(--bw) solid var(--line)}
-.job:first-child{border-top:0;padding-top:0}
-@media (max-width:680px){.job{grid-template-columns:minmax(0,1fr);gap:var(--s-1)}}
-.when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
-.org{color:var(--muted);font-size:15px;margin:2px 0 var(--s-2)}
-.job li{margin-bottom:var(--s-1);font-size:15px}
-.edu{margin-top:var(--s-8);padding:var(--s-5) var(--s-6);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2) var(--s-6)}
-.edu .muted{font-size:var(--t-sm);margin-top:var(--s-1)}
+/* ---------- experience register ---------- */
+.register{list-style:none;padding:0}
+.register > li{position:relative;padding:var(--s-6) 0;border-bottom:1px solid var(--rule)}
+.register > li:first-child{padding-top:0}
+.register > li:first-child .margin{top:0}
+.register .margin{top:var(--s-6);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.register h3{font-size:var(--t-lg)}
+.register .org{color:var(--ink-2);margin:2px 0 var(--s-3)}
+.register ul{max-width:70ch}
+.register li li{margin-bottom:var(--s-1)}
+.edu{position:relative;padding:var(--s-6) 0 0}
+.edu .margin{top:var(--s-6);color:var(--ink-2)}
 
-/* ===== About / path ===== */
-.about-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--s-10)}
-@media (max-width:820px){.about-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-8)}}
-.about-grid p + p{margin-top:var(--s-4)}
-.stages{list-style:none;padding:0;margin:0;border-left:2px solid var(--line)}
-.stage{position:relative;padding:0 0 var(--s-5) var(--s-6)}
-.stage:last-child{padding-bottom:0}
-.stage::before{content:"";position:absolute;left:-9px;top:3px;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--bg)}
-.stage.done::before{background:var(--accent)}
-.stage.now::before{box-shadow:0 0 0 4px var(--accent-soft)}
-.stage .label{color:var(--accent)}
-.stage b{display:block;font-weight:600}
-.stage span{font-size:var(--t-sm);color:var(--muted)}
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-8)}
+@media (max-width:860px){.skills{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}}
+.skills h3{font-size:var(--t-md);padding-bottom:var(--s-2);border-bottom:1px solid var(--rule);margin-bottom:var(--s-3)}
+.skills p{color:var(--ink-2);font-size:15.5px}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-10);margin-bottom:var(--s-12)}
+@media (max-width:860px){.about{grid-template-columns:minmax(0,1fr);gap:var(--s-4)}}
+.about p{max-width:62ch}
+.about p + p{margin-top:var(--s-4)}
 
-/* ===== Skills ===== */
-.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-3)}
-@media (max-width:860px){.skills{grid-template-columns:minmax(0,1fr)}}
-.tier{padding:var(--s-5)}
-.tier h3{font-size:var(--t-md);display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-1)}
-.tier p{font-size:var(--t-sm);color:var(--muted);margin-bottom:var(--s-3)}
-.meter{display:inline-flex;gap:3px}
-.meter i{width:12px;height:6px;border-radius:2px;background:var(--line)}
-.meter i.on{background:var(--accent)}
+/* ---------- learning ---------- */
+.learn{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s-10)}
+@media (max-width:860px){.learn{grid-template-columns:minmax(0,1fr);gap:var(--s-8)}}
+.learn h3{font-size:var(--t-md);margin-bottom:var(--s-2)}
+.learn p{max-width:60ch}
+.learn table{margin-top:var(--s-5)}
+.log{list-style:none;padding:0}
+.log li{display:grid;grid-template-columns:86px minmax(0,1fr);gap:var(--s-4);padding:var(--s-3) 0;border-bottom:1px solid var(--rule);font-size:15px}
+.log time{color:var(--ink-2);font-variant-numeric:tabular-nums;font-size:var(--t-sm)}
 
-/* ===== Learning ===== */
-.learn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-8)}
-@media (max-width:820px){.learn-grid{grid-template-columns:minmax(0,1fr)}}
-.repo{padding:var(--s-5)}
-.repo h3{font-size:17px;margin-bottom:var(--s-1)}
-.repo p{font-size:15px;color:var(--muted)}
-.repo .facts{margin-top:var(--s-4)}
-.phases{list-style:none;padding:0;margin:var(--s-4) 0 0;display:grid;gap:var(--s-2)}
-.phase{display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--s-3);padding:var(--s-3) var(--s-4);border:var(--bw) solid var(--line);border-radius:var(--r-md);background:var(--surface);font-size:15px}
-.phase.now{border-color:var(--accent)}
-.phase .when{font-size:var(--t-xs)}
-.phase .when b{display:block;color:var(--ink);font-weight:500}
-.log{list-style:none;padding:0;margin:0;border-left:2px solid var(--line)}
-.log li{padding:0 0 var(--s-4) var(--s-5);position:relative}
-.log li::before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
-.log time{font-family:var(--mono);font-size:var(--t-xs);color:var(--muted)}
-.log p{font-size:15px}
+/* ---------- contact ---------- */
+.contact{padding-bottom:var(--s-16)}
+.contact .lead{font-size:var(--t-lg);max-width:44ch;line-height:1.45}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-4);margin-top:var(--s-6)}
+.mail a{font-size:clamp(22px,3.4vw,34px);font-weight:750;letter-spacing:-.02em;overflow-wrap:anywhere;text-decoration-thickness:2px}
+.contact .links{margin-top:var(--s-6)}
+footer{border-top:1px solid var(--rule);font-size:13px;color:var(--ink-2)}
+footer .ledger{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2);padding-block:var(--s-5) var(--s-10)}
+footer .ledger::before{display:none}
 
-/* ===== Certifications ===== */
-.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:var(--s-3)}
-.cert{padding:var(--s-4) var(--s-5);display:flex;flex-direction:column;gap:var(--s-1)}
-.cert .name{font-weight:600;line-height:1.35}
-.cert .meta{font-size:13.5px;color:var(--muted)}
-.cert a{font-size:13.5px;margin-top:auto;padding-top:var(--s-1)}
-
-/* ===== Contact ===== */
-.contact{padding:var(--s-8);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s-8);align-items:center}
-@media (max-width:780px){.contact{grid-template-columns:minmax(0,1fr);padding:var(--s-5)}}
-.channels{display:grid;gap:var(--s-2)}
-.channel{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);padding:var(--s-3) var(--s-4);border:var(--bw) solid var(--line);border-radius:var(--r-md);min-width:0;background:var(--bg)}
-.channel > div{min-width:0}
-.channel .val{font-size:15px;overflow-wrap:anywhere}
-footer{padding-block:var(--s-6) var(--s-10);font-size:13px;color:var(--muted);border-top:var(--bw) solid var(--line)}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2)}
-
-.mt-8{margin-top:var(--s-8)}.mt-12{margin-top:var(--s-12)}.mb-4{margin-bottom:var(--s-4)}.mb-8{margin-bottom:var(--s-8)}
-@media print{.nav,.cta,.case-links,.copy{display:none}section{padding-block:var(--s-6)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{.top,.sheet-tools,.actions,.mail button{display:none}}
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3.5 6.5h17v11h-17zM4 7l8 6 8-6"/></symbol>
-  <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2"/></symbol>
-  <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5M3 9.75h4v11H3zm6.5 0h3.83v1.5h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.82c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.9h-4z"/></symbol>
-  <symbol id="i-ext" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6m0-6-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<svg width="0" height="0" class="sr" aria-hidden="true">
+  <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></symbol>
 </svg>
 
-<nav class="nav" aria-label="Sections">
-  <div class="wrap">
-    <a class="mark" href="#top">Miguel<span>.</span>Faustino</a>
-    <div class="links">
+<header class="top">
+  <div class="ledger">
+    <a class="brand" href="#top">Miguel Jay Faustino</a>
+    <nav aria-label="Sections">
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#learning">Learning</a>
       <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
-    </div>
-    <a class="btn btn-primary btn-sm" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Resume</a>
+    </nav>
+    <a class="btn small" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Resume</a>
   </div>
-</nav>
+</header>
 
-<main id="top">
-  <div class="wrap">
+<main id="top" class="ledger">
 
-    <!-- ========== HERO ========== -->
-    <section class="hero" aria-labelledby="hero-name">
-      <div class="hero-grid">
-        <div>
-          <p class="status"><span class="dot" aria-hidden="true"></span>Open to remote roles</p>
-          <h1 id="hero-name">Miguel Jay Faustino</h1>
-          <p class="headline"><b>Business Analyst</b> moving into <b>Data Engineering</b></p>
-          <p class="thesis">I turn messy operational data into systems people trust: validated at the door, modeled clearly, and documented so the business can act on it.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Download resume</a>
-            <a class="btn" href="mailto:migueljayfaustino@gmail.com"><svg><use href="#i-mail"/></svg>Email me</a>
-            <a class="btn" href="https://github.com/CertJay" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
-            <a class="btn" href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" aria-labelledby="name">
+    <div class="hero-grid">
+      <div>
+        <h1 id="name">Miguel Jay Faustino</h1>
+        <p class="role">Business Analyst moving into data engineering</p>
+      </div>
+      <div>
+        <p class="pitch">I make messy operational records trustworthy: checked at the door, reconciled to the last row, and documented so a business can act on them. The sheet here runs the same kind of rules I apply at work.</p>
+        <dl class="facts">
+          <div><dt>Looking for</dt><dd>Junior data engineer, analytics engineer or data-focused BA roles. Remote, full-time or contract.</dd></div>
+          <div><dt>Based in</dt><dd>Cavite, Philippines (UTC+8)</dd></div>
+        </dl>
+        <div class="actions">
+          <a class="btn" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Download resume</a>
+          <div class="links">
+            <a href="mailto:migueljayfaustino@gmail.com">Email</a>
+            <a href="https://github.com/CertJay" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
+      </div>
+    </div>
 
-        <aside class="card snapshot" aria-label="Snapshot">
-          <dl>
-            <div><dt class="label">Looking for</dt><dd>Junior Data Engineer, Analytics Engineer, or data-focused Business Analyst</dd></div>
-            <hr>
-            <div><dt class="label">Work setup</dt><dd>Remote, full-time or contract · Cavite, Philippines (UTC+8)</dd></div>
-            <hr>
-            <div><dt class="label">Strongest in</dt><dd>SQL, data validation and cleaning, requirements and data mapping, test design</dd></div>
-            <hr>
-            <div><dt class="label">Building with now</dt><dd>Python, pandas, PostgreSQL, Git, toward Airflow, dbt and Docker</dd></div>
+      <div class="sheet" id="demo">
+        <div class="sheet-head">
+          <span class="file data">ict_inventory_q3.xlsx</span>
+          <span class="note">Synthetic data. Toggle the rules to see what each one does.</span>
+        </div>
+        <div class="rules">
+          <fieldset>
+            <legend class="sr">Validation rules, applied in order</legend>
+            <label class="rule"><input type="checkbox" data-rule="names"><b>1</b>Standardize school names</label>
+            <label class="rule"><input type="checkbox" data-rule="qty"><b>2</b>Parse quantities</label>
+            <label class="rule"><input type="checkbox" data-rule="cond"><b>3</b>Normalize condition</label>
+            <label class="rule"><input type="checkbox" data-rule="reject"><b>4</b>Quarantine incomplete rows</label>
+            <label class="rule"><input type="checkbox" data-rule="dedupe"><b>5</b>Drop duplicates</label>
+          </fieldset>
+          <div class="sheet-tools">
+            <button class="btn quiet small" type="button" id="run">Run all</button>
+            <button class="btn quiet small" type="button" id="reset">Reset</button>
+          </div>
+        </div>
+        <div class="grid-wrap">
+          <table class="cells">
+            <caption class="sr">Inventory rows and their validation result</caption>
+            <thead><tr><th class="n" scope="col">Row</th><th class="mk" scope="col"><span class="sr">Status</span></th><th scope="col">School</th><th scope="col" class="c-item">Item</th><th scope="col" class="q">Qty</th><th scope="col" class="c-serial">Serial</th><th scope="col" class="c-cond">Condition</th><th scope="col">Note</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="recon" aria-live="polite">
+          <p class="eq" id="eq"></p>
+          <p class="total data" id="total"></p>
+          <p class="why" id="why"></p>
+        </div>
+      </div>
+  </section>
+
+  <!-- ===================== WORK ===================== -->
+  <section id="work" aria-labelledby="work-h">
+    <div class="section-head">
+      <h2 id="work-h">Shipped work</h2>
+      <p><a href="https://github.com/CertJay" target="_blank" rel="noopener">All repositories on GitHub</a></p>
+    </div>
+
+    <article class="project" aria-labelledby="eq-h">
+      <p class="margin pen green">shipped,<br>public repo</p>
+      <h3 id="eq-h">e-QUAART</h3>
+      <p class="sub">Assessment results management, analytics and intervention tracking for a schools division.</p>
+      <div class="proj-grid">
+        <div>
+          <h4>The problem</h4>
+          <p>Schools run several reading and math assessments (CRLA, Phil-IRI, RMA, ELLNA and end-of-term tests). Results sat in separate spreadsheets, so nobody could see learning gaps across classes, schools and the division, or tell whether an intervention had worked.</p>
+          <h4>How data moves through it</h4>
+          <ol class="steps" aria-label="Data flow">
+            <li><span>Capture: grid entry, CSV and Excel import</span></li>
+            <li class="gate"><span>Verify: submit, check, return</span></li>
+            <li><span>Classify by performance level</span></li>
+            <li><span>Find learning gaps</span></li>
+            <li><span>Intervene</span></li>
+            <li><span>Reassess</span></li>
+          </ol>
+          <h4>Data decisions</h4>
+          <ul class="decisions">
+            <li><b>Validation at the door.</b> Every import and form is checked against a schema before it reaches the database, and a verification queue keeps unchecked results out of the analytics.</li>
+            <li><b>Rules as configuration.</b> Performance levels, curriculum and who encodes what are settings, so a new assessment needs no code change.</li>
+            <li><b>A rollover you can re-run.</b> Moving learners into the next school year is idempotent: running it twice never moves anyone twice.</li>
+            <li><b>Storage sized to the user.</b> A single-file SQLite build runs on a school laptop without admin rights. A PostgreSQL branch handles division-wide concurrent writes.</li>
+            <li><b>Privacy by design.</b> Role-scoped access for 10 user types, a full audit trail, and a data protection officer view for exports, retention and breach records.</li>
+          </ul>
+        </div>
+        <div>
+          <dl class="spec">
+            <dt>Demo data</dt><dd><span class="data">~79,000</span> results, <span class="data">~2,600</span> learners, <span class="data">~1,400</span> interventions, 9 schools over 3 school years. All fictional.</dd>
+            <dt>Stack</dt><dd>TypeScript, Node.js, Express, Prisma, SQLite, PostgreSQL, React, Recharts</dd>
+            <dt>Quality</dt><dd>Unit and integration tests against a seeded dataset, type checks, and CI on GitHub Actions</dd>
+            <dt>Runs on</dt><dd>One laptop with Node.js, or Docker Compose for a server</dd>
           </dl>
-        </aside>
+          <div class="proj-links">
+            <a class="btn" href="https://github.com/CertJay/e-QUAART" target="_blank" rel="noopener">View the code</a>
+            <a href="https://github.com/CertJay/e-QUAART/blob/main/documentation.md" target="_blank" rel="noopener">Setup and docs</a>
+          </div>
+        </div>
       </div>
+    </article>
 
-      <div class="proof" aria-label="Highlights">
-        <div class="card stat"><b>79,000</b><span>assessment results validated and analyzed in e-QUAART's demo dataset</span></div>
-        <div class="card stat"><b>45</b><span>schools' ICT and connectivity data consolidated at DepEd</span></div>
-        <div class="card stat"><b>120+</b><span>requirement gaps traced and severity-ranked as a Business Analyst</span></div>
-        <div class="card stat"><b>6</b><span>certifications, each with a link you can verify</span></div>
-      </div>
-    </section>
-
-    <!-- ========== WORK ========== -->
-    <section id="work" aria-labelledby="work-h">
-      <div class="section-head">
+    <article class="project" aria-labelledby="dash-h">
+      <p class="margin pen blue">shipped Oct 2026,<br>private: internal data</p>
+      <h3 id="dash-h">School Division Dashboard</h3>
+      <p class="sub">One Streamlit app over a school division's Excel records: personnel, equipment, DCP ICT equipment and ISP accounts.</p>
+      <div class="proj-grid">
         <div>
-          <p class="eyebrow">Selected work</p>
-          <h2 id="work-h">Shipped systems built around data quality</h2>
+          <h4>The problem</h4>
+          <p>Simple questions (how many staff, which equipment is unserviceable, which schools have weak internet) meant opening four separate workbooks. Each office also needed to see only its own records.</p>
+          <h4>How data moves through it</h4>
+          <ol class="steps" aria-label="Data flow">
+            <li><span>Excel workbooks</span></li>
+            <li class="gate"><span>pandas: clean and flag</span></li>
+            <li><span>Plotly charts</span></li>
+            <li><span>Role-based tabs</span></li>
+            <li><span>CSV export</span></li>
+          </ol>
+          <h4>Data decisions</h4>
+          <ul class="decisions">
+            <li><b>Clean on load.</b> Text trimmed, blanks filled, cost and speed columns made numeric and dates parsed, so totals don't break on messy cells.</li>
+            <li><b>Business rules as derived fields.</b> An item counts as DCP ICT when it has a package value and isn't marked Non-DCP. Teaching vs non-teaching staff is derived from the position title, because the source has no such column.</li>
+            <li><b>Least-privilege loading.</b> After sign-in the app builds only the tabs a role may open and loads only that role's files. Reads are cached.</li>
+          </ul>
         </div>
-        <a class="btn btn-ghost btn-sm" href="https://github.com/CertJay" target="_blank" rel="noopener">All repositories<svg><use href="#i-ext"/></svg></a>
+        <div>
+          <dl class="spec">
+            <dt>Sources</dt><dd>4 Excel workbooks</dd>
+            <dt>Users</dt><dd>4 roles: HR, Supply, ICT and admin</dd>
+            <dt>Stack</dt><dd>Python, pandas, Streamlit, Plotly</dd>
+            <dt>Why private</dt><dd>It runs on internal records, so code and data aren't public. A synthetic-data demo is planned. Sign-in is a simple in-app check suited to an internal prototype, not production authentication.</dd>
+          </dl>
+        </div>
       </div>
 
-      <article class="card case" aria-labelledby="case-h">
-        <div class="case-top">
-          <span class="pill pill-ok"><span class="dot" aria-hidden="true"></span>Shipped · public repo</span>
-          <span class="pill pill-accent">Featured</span>
-        </div>
-        <h3 id="case-h">e-QUAART</h3>
-        <p class="sub">Assessment results management, analytics and intervention tracking for a schools division</p>
+      <details class="more">
+        <summary>Look inside the app</summary>
 
-        <div class="case-grid">
-          <div>
-            <div class="block">
-              <p class="label">The problem</p>
-              <p>Schools run several reading and math assessments (CRLA, Phil-IRI, RMA, ELLNA, end-of-term). The results live in separate spreadsheets, so nobody can see learning gaps across classes, schools and the division, or tell whether an intervention actually worked.</p>
-            </div>
-            <div class="block">
-              <p class="label">How data moves through it</p>
-              <ol class="flow" aria-label="Data flow">
-                <li><span>Capture: grid + CSV/Excel import</span></li>
-                <li class="qa"><span>Quality check: submit → verify → return</span></li>
-                <li><span>Classify by performance level</span></li>
-                <li><span>Find learning gaps</span></li>
-                <li><span>Intervene</span></li>
-                <li><span>Reassess</span></li>
-              </ol>
-            </div>
-            <div class="block">
-              <p class="label">Data engineering decisions</p>
-              <ul class="decisions">
-                <li><b>Validation at the door.</b> Every import and form is checked against a schema before it touches the database, and a verification queue keeps unchecked results out of the analytics.</li>
-                <li><b>Rules as configuration.</b> Performance levels, curriculum and who encodes what are settings, not hard-coded logic, so new instruments don't need a code change.</li>
-                <li><b>Idempotent year-end rollover.</b> Moving learners into the next school year can be re-run safely without moving anyone twice.</li>
-                <li><b>Storage sized to the user.</b> A single-file SQLite build runs on a school laptop with no admin rights; a PostgreSQL branch handles division-wide concurrent writes.</li>
-                <li><b>Privacy by design.</b> Role-scoped access for 10 user types, a full audit trail, and a Data Protection Officer view for exports, retention and breach records.</li>
-              </ul>
-            </div>
+        <h4>The DCP ICT Equipment tab, redrawn with made-up numbers</h4>
+        <div class="mock" role="img" aria-label="Mock-up of the dashboard: four tabs, five summary tiles, a bar chart of equipment condition and a donut chart of package mix, all with illustrative numbers.">
+          <div class="mock-tabs"><span>Personnel</span><span>Equipment</span><span class="on">DCP ICT Equipment</span><span>ISP Accounts</span></div>
+          <div class="kpis">
+            <div class="kpi"><b>1,240</b><span>Total DCP items</span></div>
+            <div class="kpi ok"><b>892</b><span>Serviceable, 72%</span></div>
+            <div class="kpi bad"><b>174</b><span>Unserviceable, 14%</span></div>
+            <div class="kpi fix"><b>112</b><span>For repair, 9%</span></div>
+            <div class="kpi"><b>62</b><span>For disposal, 5%</span></div>
           </div>
-
-          <div>
-            <div class="block">
-              <p class="label">Demo dataset (fictional)</p>
-              <div class="facts">
-                <div class="fact"><b>~79,000</b><span>results</span></div>
-                <div class="fact"><b>~2,600</b><span>learners</span></div>
-                <div class="fact"><b>~1,400</b><span>interventions tracked</span></div>
-                <div class="fact"><b>9 schools</b><span>3 districts · 3 school years</span></div>
-              </div>
+          <div class="mock-charts">
+            <div class="panel bars">
+              <div class="t">DCP equipment by condition</div>
+              <div class="r"><span>Serviceable</span><div class="bar"><i class="w72"></i></div><small>892</small></div>
+              <div class="r"><span>Unserviceable</span><div class="bar"><i class="w14"></i></div><small>174</small></div>
+              <div class="r"><span>For repair</span><div class="bar"><i class="w9"></i></div><small>112</small></div>
+              <div class="r"><span>For disposal</span><div class="bar"><i class="w5"></i></div><small>62</small></div>
             </div>
-            <div class="block">
-              <p class="label">Stack</p>
-              <div class="tags">
-                <span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Prisma</span><span class="tag">SQLite</span><span class="tag">PostgreSQL</span><span class="tag">React</span><span class="tag">Recharts</span><span class="tag">Vitest</span><span class="tag">Docker Compose</span><span class="tag">GitHub Actions</span>
-              </div>
-            </div>
-            <div class="block">
-              <p class="label">Quality</p>
-              <p class="muted">Unit and integration tests run against a seeded dataset, plus type checks and CI on every push.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-links">
-          <a class="btn btn-primary btn-sm" href="https://github.com/CertJay/e-QUAART" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a>
-          <a class="btn btn-sm" href="https://github.com/CertJay/e-QUAART/blob/main/documentation.md" target="_blank" rel="noopener">Setup and docs<svg><use href="#i-ext"/></svg></a>
-        </div>
-      </article>
-
-      <article class="card case std" aria-labelledby="dash-h">
-        <div class="case-top">
-          <span class="pill pill-ok"><span class="dot" aria-hidden="true"></span>Shipped · Oct 2026</span>
-          <span class="pill pill-plan">Private: internal data</span>
-        </div>
-        <h3 id="dash-h">School Division Dashboard</h3>
-        <p class="sub">One Streamlit app over a school division's Excel records: personnel, equipment, DCP ICT equipment and ISP accounts</p>
-
-        <div class="case-grid">
-          <div>
-            <div class="block">
-              <p class="label">The problem</p>
-              <p>Simple questions (how many staff, which equipment is unserviceable, which schools have weak internet) meant opening four separate workbooks. Each office also needed to see only its own records.</p>
-            </div>
-            <div class="block">
-              <p class="label">How data moves through it</p>
-              <ol class="flow" aria-label="Data flow">
-                <li><span>Excel workbooks</span></li>
-                <li class="qa"><span>pandas: clean + flag</span></li>
-                <li><span>Plotly charts</span></li>
-                <li><span>Role-based Streamlit tabs</span></li>
-                <li><span>CSV export</span></li>
-              </ol>
-            </div>
-            <div class="block">
-              <p class="label">Data decisions</p>
-              <ul class="decisions">
-                <li><b>Clean on load.</b> Text trimmed, blanks filled, cost and speed columns made numeric, dates parsed, so totals and charts don't break on messy cells.</li>
-                <li><b>Business rules as derived fields.</b> An item counts as DCP ICT when it has a package value and isn't marked Non-DCP; teaching vs non-teaching staff is derived from position title because the source has no such column.</li>
-                <li><b>Least-privilege loading.</b> After sign-in the app builds only the tabs a role may open, and loads only that role's files. Reads are cached.</li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <div class="block">
-              <p class="label">Stack</p>
-              <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">Excel</span></div>
-            </div>
-            <div class="block">
-              <p class="label">Scope</p>
-              <div class="facts">
-                <div class="fact"><b>4</b><span>source workbooks</span></div>
-                <div class="fact"><b>4 roles</b><span>HR, Supply, ICT, admin</span></div>
-              </div>
-            </div>
-            <div class="block">
-              <p class="label">Why it's private</p>
-              <p class="muted">It runs on internal records, so the code and data aren't public. A synthetic-data demo version is planned. Sign-in is a simple in-app check suited to an internal prototype, not production authentication.</p>
-            </div>
-          </div>
-        </div>
-
-        <details class="more">
-          <summary>See inside the app</summary>
-
-          <p class="label">Preview: DCP ICT Equipment tab (made-up numbers)</p>
-          <div class="mock" role="img" aria-label="Mock-up of the dashboard: four tabs, five summary tiles, a bar chart of equipment condition and a donut chart of package mix, all with illustrative numbers.">
-            <div class="mock-tabs"><span>Personnel</span><span>Equipment</span><span class="on">DCP ICT Equipment</span><span>ISP Accounts</span></div>
-            <div class="kpis">
-              <div class="kpi"><b>1,240</b><span>Total DCP items</span></div>
-              <div class="kpi ok"><b>892</b><span>Serviceable · 72%</span></div>
-              <div class="kpi bad"><b>174</b><span>Unserviceable · 14%</span></div>
-              <div class="kpi warn"><b>112</b><span>For repair · 9%</span></div>
-              <div class="kpi warn"><b>62</b><span>For disposal · 5%</span></div>
-            </div>
-            <div class="mock-charts">
-              <div class="panel bars">
-                <div class="t">DCP equipment by condition</div>
-                <div class="r"><span>Serviceable</span><div class="bar"><i class="w72"></i></div><small>892</small></div>
-                <div class="r"><span>Unserviceable</span><div class="bar"><i class="w14"></i></div><small>174</small></div>
-                <div class="r"><span>For repair</span><div class="bar"><i class="w9"></i></div><small>112</small></div>
-                <div class="r"><span>For disposal</span><div class="bar"><i class="w5"></i></div><small>62</small></div>
-              </div>
-              <div class="panel">
-                <div class="t">Items by DCP package</div>
-                <div class="donut-wrap">
-                  <div class="donut"></div>
-                  <div class="legend">
-                    <span><i class="c1"></i>Package A · 46%</span>
-                    <span><i class="c2"></i>Package B · 32%</span>
-                    <span><i class="c3"></i>Package C · 14%</span>
-                    <span><i class="c4"></i>Other · 8%</span>
-                  </div>
+            <div class="panel">
+              <div class="t">Items by DCP package</div>
+              <div class="donut-wrap">
+                <div class="donut"></div>
+                <div class="legend">
+                  <span><i class="c1"></i>Package A, 46%</span>
+                  <span><i class="c2"></i>Package B, 32%</span>
+                  <span><i class="c3"></i>Package C, 14%</span>
+                  <span><i class="c4"></i>Other, 8%</span>
                 </div>
               </div>
             </div>
           </div>
-          <p class="note">Illustration only. Layout and chart types match the app; the numbers do not.</p>
+        </div>
+        <p class="small-note">Illustration only. The layout and chart types match the app; the numbers do not.</p>
 
-          <p class="label">Who sees what</p>
-          <div class="matrix-wrap">
-            <table class="matrix">
-              <caption class="sr">Tab access by role</caption>
-              <thead><tr><th>Role</th><th>Personnel</th><th>Equipment</th><th>DCP ICT</th><th>ISP</th></tr></thead>
-              <tbody>
-                <tr><td>HR officer</td><td class="y">Yes</td><td class="n">–</td><td class="n">–</td><td class="n">–</td></tr>
-                <tr><td>Supply officer</td><td class="n">–</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">–</td></tr>
-                <tr><td>ICT officers (2)</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-                <tr><td>Super admin</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-              </tbody>
-            </table>
-          </div>
+        <h4>Who sees what</h4>
+        <div class="ruled-wrap">
+          <table class="ruled compact">
+            <caption class="sr">Tab access by role</caption>
+            <thead><tr><th scope="col">Role</th><th scope="col">Personnel</th><th scope="col">Equipment</th><th scope="col">DCP ICT</th><th scope="col">ISP</th></tr></thead>
+            <tbody>
+              <tr><td>HR officer</td><td class="y">Yes</td><td class="m-col">No</td><td class="m-col">No</td><td class="m-col">No</td></tr>
+              <tr><td>Supply officer</td><td class="m-col">No</td><td class="y">Yes</td><td class="y">Yes</td><td class="m-col">No</td></tr>
+              <tr><td>ICT officers (2)</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+              <tr><td>Super admin</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-          <p class="label">What each tab does</p>
-          <div class="tabgrid">
-            <div class="tabcard"><b>Personnel</b><ul><li>Total, teaching and non-teaching counts</li><li>Position mix and monthly hiring timeline</li><li>Staff per school; search by name or ID</li></ul></div>
-            <div class="tabcard"><b>Equipment</b><ul><li>Condition and disposition breakdowns</li><li>Acquisition cost per school</li><li>Flagged-items viewer, colour-coded, CSV export</li></ul></div>
-            <div class="tabcard"><b>DCP ICT Equipment</b><ul><li>Condition rates as counts and percentages</li><li>By package and year received</li><li>Serviceability rate per school, colour-banded</li></ul></div>
-            <div class="tabcard"><b>ISP Accounts</b><ul><li>Providers, connection and subscription types</li><li>Signal quality, ratings and speed tests</li><li>Monthly cost and spend per school</li></ul></div>
-          </div>
-          <p class="note">Built by merging two prototypes: a four-tab analysis app and a separate landing, sign-in and access-control app.</p>
-        </details>
-      </article>
+        <h4>What each tab does</h4>
+        <div class="tabgrid">
+          <div><h5>Personnel</h5><ul><li>Total, teaching and non-teaching counts</li><li>Position mix and monthly hiring timeline</li><li>Staff per school, search by name or ID</li></ul></div>
+          <div><h5>Equipment</h5><ul><li>Condition and disposition breakdowns</li><li>Acquisition cost per school</li><li>Flagged-items viewer with CSV export</li></ul></div>
+          <div><h5>DCP ICT Equipment</h5><ul><li>Condition rates as counts and percentages</li><li>By package and year received</li><li>Serviceability rate per school</li></ul></div>
+          <div><h5>ISP Accounts</h5><ul><li>Providers, connection and subscription types</li><li>Signal quality, ratings and speed tests</li><li>Monthly cost and spend per school</li></ul></div>
+        </div>
+        <p class="small-note">Built by merging two prototypes: a four-tab analysis app and a separate landing, sign-in and access-control app.</p>
+      </details>
+    </article>
 
-      <div class="next-head">
-        <p class="eyebrow">Building now</p>
-        <p class="lede">Each one starts from a problem I've met at work, uses synthetic or public data, and ends with something that runs. Dates are my targets.</p>
+    <div class="section-head later">
+      <h2>Building now</h2>
+      <p>Each starts from a problem I've met at work and runs on synthetic or public data.</p>
+    </div>
+    <div class="ruled-wrap">
+      <table class="ruled stack">
+        <caption class="sr">Projects in progress</caption>
+        <thead><tr><th scope="col">Project</th><th scope="col">What it does</th><th scope="col">Stack</th><th scope="col">Target</th></tr></thead>
+        <tbody>
+          <tr><td>Excel Validation Cleaner</td><td>Reads a messy workbook, applies the rules in the sheet above, and writes a clean file plus an exceptions report. At DepEd and TESDA this took hours by hand.</td><td class="m-col">Python, pandas, openpyxl</td><td class="when">Nov 2026</td></tr>
+          <tr><td>Invoice PDF to Database</td><td>Parses line items from supplier invoice PDFs, checks line totals against the document total, and loads clean rows into a database.</td><td class="m-col">Python, pdfplumber, PostgreSQL</td><td class="when">Dec 2026</td></tr>
+          <tr><td>Onboard Spend Pipeline</td><td>Scheduled ETL over synthetic resort-at-sea spending: outlet charges reconciled against folio totals, modeled into daily revenue tables, served to a dashboard.</td><td class="m-col">Python, PostgreSQL, Airflow, Docker, Power BI</td><td class="when">Jan 2027</td></tr>
+          <tr><td>Supplier Ordering and P&amp;L</td><td>Weekly ordering, inventory and profit-and-loss for a small food supplier to school feeding programs: price history, carry-over stock, spoilage, partial payments and receivables.</td><td class="m-col">Data modeling, spreadsheets</td><td class="when">In use</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="section-head">
+      <h2 id="exp-h">Experience</h2>
+      <p><a href="resume/Miguel-Jay-Faustino-Resume.pdf" download>Resume as a PDF</a></p>
+    </div>
+    <ol class="register">
+      <li>
+        <p class="margin">Apr 2026<br>to now</p>
+        <h3>Business Analyst</h3>
+        <p class="org">Synkronous, remote. Enterprise hospitality software implementation.</p>
+        <ul>
+          <li>Run requirements discovery and gap analysis for an implementation spanning about 20 integrated applications, covering business rules, integrations and data flows.</li>
+          <li>Traced 120+ gaps between the business baseline and workshop findings into a severity-ranked register, each linked back to its source.</li>
+          <li>Wrote point-of-sale and property-management test-case workbooks (110+ cases), UAT plans, RAID logs and integration inventories.</li>
+          <li>Consolidated a 12-session discovery workshop series with client IT, operations and vendor teams into one source-of-truth knowledge base.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="margin">Nov 2025<br>to Mar 2026</p>
+        <h3>ICT Support Staff</h3>
+        <p class="org">Department of Education, Dasmariñas</p>
+        <ul>
+          <li>Consolidated ICT equipment inventories and internet-subscription data for 45 schools to regional reporting standards.</li>
+          <li>Built stakeholder databases and audited billing accounts, provider ratings and connection speeds in Excel.</li>
+          <li>Supported division-wide reporting for the DepEd Computerization Program.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="margin">Aug 2025<br>to Oct 2025</p>
+        <h3>Data Management Associate</h3>
+        <p class="org">TESDA Assessment Center</p>
+        <ul>
+          <li>Cleaned, validated and standardized trainee and program records so reports could be trusted.</li>
+          <li>Produced operational and statistical reports from spreadsheets and database queries.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="margin">Feb 2025<br>to May 2025</p>
+        <h3>IT Intern</h3>
+        <p class="org">Department of Education, Dasmariñas</p>
+        <ul>
+          <li>Installed and configured LAMP and LEMP server stacks on Ubuntu.</li>
+          <li>Built network racks, terminated and tested Cat6E cabling, and configured routers for multi-ISP failover.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="margin">Jan 2023</p>
+        <h3>Administrative Assistant</h3>
+        <p class="org">Business Permit and Licensing Office, Dasmariñas</p>
+        <ul><li>Supported 500+ clients through permit applications and renewals while keeping sensitive records accurate.</li></ul>
+      </li>
+    </ol>
+    <div class="edu">
+      <p class="margin">2021<br>to 2025</p>
+      <h3>BS Information Systems, major in Data Science</h3>
+      <p class="muted">Kolehiyo ng Lungsod ng Dasmariñas. Dean's Lister all four years, Class President, Mentor Committee Head.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="section-head">
+      <h2 id="skills-h">Why data engineering, and what I bring</h2>
+    </div>
+    <div class="about">
+      <p>After graduating I kept landing in the same place: the spreadsheet nobody trusted. At DepEd and TESDA I was the one cleaning and reconciling it by hand. As a Business Analyst I now write the rules, integration matrices and test plans that describe how data should move between systems.</p>
+      <p>Data engineering is the next step on the same path: building that movement myself, tested and automated. I bring habits engineers often learn later: asking why the data is needed, agreeing on definitions, and proving the numbers reconcile.</p>
+    </div>
+    <div class="skills">
+      <div>
+        <h3>Use at work</h3>
+        <p>SQL and MySQL, advanced Excel and Google Sheets, data cleaning and validation, requirements and gap analysis, data mapping, UAT and test design, Linux (Ubuntu) with LAMP and LEMP stacks.</p>
       </div>
-      <div class="next">
-        <article class="card mini flag">
-          <div class="row"><h3>Onboard Spend Pipeline</h3><span class="pill pill-plan">Target Jan 2027</span></div>
-          <p>Scheduled ETL over synthetic resort-at-sea spending: outlet charges extracted, reconciled against folio totals, modeled into daily revenue tables, and served to a dashboard.</p>
-          <ol class="flow" aria-label="Planned architecture">
-            <li><span>CSV + API</span></li><li><span>Python</span></li><li class="qa"><span>validate</span></li><li><span>PostgreSQL</span></li><li><span>SQL models</span></li><li><span>Power BI</span></li>
-          </ol>
-          <div class="tags"><span class="tag">Airflow</span><span class="tag">Docker</span><span class="tag">PostgreSQL</span><span class="tag">Python</span></div>
-        </article>
-        <article class="card mini">
-          <div class="row"><h3>Excel Validation Cleaner</h3><span class="pill pill-wip">Building · Nov 2026</span></div>
-          <p>Reads a messy workbook, applies validation rules (duplicates, missing fields, inconsistent IDs, "5 pcs" in number columns) and writes a clean file plus an exceptions report. At DepEd and TESDA this check took hours by hand.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">openpyxl</span></div>
-        </article>
-        <article class="card mini">
-          <div class="row"><h3>Invoice PDF to Database</h3><span class="pill pill-plan">Target Dec 2026</span></div>
-          <p>Parses line items from supplier invoice PDFs, checks line totals against the document total, and loads clean rows into a database you can query.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">pdfplumber</span><span class="tag">PostgreSQL</span></div>
-        </article>
-        <article class="card mini">
-          <div class="row"><h3>Supplier Ordering and P&amp;L</h3><span class="pill pill-wip">In use</span></div>
-          <p>A weekly ordering, inventory and profit-and-loss system for a small food supplier to school feeding programs: weekly price history, carry-over stock, spoilage, partial payments and receivables.</p>
-          <div class="tags"><span class="tag">Data modeling</span><span class="tag">Spreadsheets</span><span class="tag">Reporting</span></div>
-        </article>
+      <div>
+        <h3>Building with</h3>
+        <p>Python, pandas, Streamlit, Plotly, PostgreSQL, SQLite, Git and GitHub, GitHub Actions, Power BI, data modeling.</p>
       </div>
-    </section>
+      <div>
+        <h3>Learning next</h3>
+        <p>Airflow, dbt, Docker, BigQuery, AWS and Spark, on my plan through early 2027.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- ========== EXPERIENCE ========== -->
-    <section id="experience" aria-labelledby="exp-h">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Experience</p>
-          <h2 id="exp-h">Every role has been a data role</h2>
-        </div>
-        <a class="btn btn-sm" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Resume (PDF)</a>
+  <!-- ===================== LEARNING ===================== -->
+  <section id="learning" aria-labelledby="learn-h">
+    <div class="section-head">
+      <h2 id="learn-h">Learning in public</h2>
+      <p>Started 12 October 2026</p>
+    </div>
+    <div class="learn">
+      <div>
+        <h3><a href="https://github.com/CertJay/python-zero-to-de" target="_blank" rel="noopener">python-zero-to-de</a></h3>
+        <p>My public study repo: 21 modules from zero Python to a production-style pipeline, checked by about 270 automated tests. Every solved exercise gets committed, and each phase ends with a project from the table above.</p>
+        <table class="ruled">
+          <caption class="sr">Twelve-week plan</caption>
+          <thead><tr><th scope="col">Weeks</th><th scope="col">Focus</th><th scope="col">Ships</th></tr></thead>
+          <tbody>
+            <tr><td>1 to 4</td><td>Read and clean data: Python, pandas, SQL joins</td><td class="m-col">Excel Validation Cleaner</td></tr>
+            <tr><td>5 to 8</td><td>Extract and load: PDFs, databases, modeling</td><td class="m-col">Invoice PDF to Database</td></tr>
+            <tr><td>9 to 12</td><td>Real pipelines: scheduling, Docker, docs</td><td class="m-col">Onboard Spend Pipeline</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="jobs">
-        <div class="job">
-          <div class="when">Apr 2026 – Present<br>Remote</div>
-          <div>
-            <h3>Business Analyst</h3>
-            <div class="org">Synkronous · enterprise hospitality software implementation</div>
-            <ul>
-              <li>Run requirements discovery and gap analysis for an implementation spanning about 20 integrated applications, covering business rules, integrations and data flows.</li>
-              <li>Traced 120+ gaps between the business baseline and workshop findings into a severity-ranked register, each linked back to its source.</li>
-              <li>Wrote point-of-sale and property-management test-case workbooks (110+ cases), UAT plans, RAID logs and integration inventories.</li>
-              <li>Consolidated a 12-session discovery workshop series with client IT, operations and vendor teams into one source-of-truth knowledge base.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="job">
-          <div class="when">Nov 2025 – Mar 2026</div>
-          <div>
-            <h3>ICT Support Staff</h3>
-            <div class="org">Department of Education, Dasmariñas</div>
-            <ul>
-              <li>Consolidated ICT equipment inventories and internet-subscription data for 45 schools to regional reporting standards.</li>
-              <li>Built stakeholder databases and audited billing accounts, provider ratings and connection speeds with advanced Excel.</li>
-              <li>Supported division-wide reporting for the DepEd Computerization Program.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="job">
-          <div class="when">Aug 2025 – Oct 2025</div>
-          <div>
-            <h3>Data Management Associate</h3>
-            <div class="org">TESDA Assessment Center</div>
-            <ul>
-              <li>Cleaned, validated and standardized trainee and program records so reports could be trusted.</li>
-              <li>Produced operational and statistical reports from spreadsheets and database queries, keeping records accurate and confidential.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="job">
-          <div class="when">Feb 2025 – May 2025</div>
-          <div>
-            <h3>IT Intern</h3>
-            <div class="org">Department of Education, Dasmariñas</div>
-            <ul>
-              <li>Installed and configured LAMP and LEMP server stacks on Ubuntu.</li>
-              <li>Built network racks, terminated and tested Cat6E cabling, and configured routers for multi-ISP failover.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="job">
-          <div class="when">Jan 2023</div>
-          <div>
-            <h3>Administrative Assistant</h3>
-            <div class="org">Business Permit and Licensing Office, Dasmariñas</div>
-            <ul><li>Supported 500+ clients through permit applications and renewals while keeping sensitive records accurate.</li></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="card edu">
-        <div>
-          <h3>BS Information Systems, major in Data Science</h3>
-          <p class="muted">Kolehiyo ng Lungsod ng Dasmariñas · 2021 – 2025</p>
-        </div>
-        <p class="muted">Dean's Lister all four years · Class President · Mentor Committee Head</p>
-      </div>
-    </section>
-
-    <!-- ========== ABOUT + SKILLS ========== -->
-    <section id="skills" aria-labelledby="skills-h">
-      <div class="about-grid">
-        <div>
-          <p class="eyebrow">Why data engineering</p>
-          <h2 id="skills-h">I've documented how data should move. Now I build it.</h2>
-          <p class="lede">After graduating I kept landing in the same place: the spreadsheet nobody trusted. At DepEd and TESDA I was the one cleaning and reconciling it by hand. As a Business Analyst I write the rules, integration matrices and test plans that describe how data should flow between systems.</p>
-          <p class="lede">Data engineering is the next step on the same path: building that movement myself, tested and automated. I bring the habits engineers usually learn later: asking why the data is needed, agreeing on definitions, and proving the numbers reconcile.</p>
-        </div>
-        <ol class="stages" aria-label="Career path as a pipeline">
-          <li class="stage done"><span class="label">Extract</span><b>Collecting the raw data</b><span>DepEd: inventories and connectivity data for 45 schools</span></li>
-          <li class="stage done"><span class="label">Validate</span><b>Making it trustworthy</b><span>TESDA: cleaning and standardizing records</span></li>
-          <li class="stage done"><span class="label">Model</span><b>Defining how systems connect</b><span>Synkronous: business rules, integrations and data flows</span></li>
-          <li class="stage now"><span class="label">Automate</span><b>Building the pipelines myself</b><span>Now: e-QUAART and a Streamlit dashboard shipped, Python ETL in progress</span></li>
+      <div>
+        <h3>Log</h3>
+        <ol class="log" reversed>
+          <li><time datetime="2026-10-29">29 Oct</time><p>Rebuilt this site as a ledger, with a working validation sheet as the opening.</p></li>
+          <li><time datetime="2026-10-29">29 Oct</time><p>Moved the site to GitHub Pages so it lives next to my code.</p></li>
+          <li><time datetime="2026-10-21">21 Oct</time><p>Earned Cisco Data Analytics Essentials: SQL, Excel and Tableau, plus the data lifecycle.</p></li>
+          <li><time datetime="2026-10-12">12 Oct</time><p>Started the 12-week plan. Rule: every topic has to connect to a task I already do at work.</p></li>
         </ol>
       </div>
+    </div>
+  </section>
 
-      <div class="skills mt-12">
-        <div class="card tier">
-          <h3><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>Use at work</h3>
-          <p>Day-to-day, with results I can show</p>
-          <div class="tags"><span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">Advanced Excel</span><span class="tag">Google Sheets</span><span class="tag">Data cleaning</span><span class="tag">Data validation</span><span class="tag">Requirements</span><span class="tag">Gap analysis</span><span class="tag">UAT / test design</span><span class="tag">Linux (Ubuntu)</span><span class="tag">LAMP / LEMP</span></div>
-        </div>
-        <div class="card tier">
-          <h3><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Building with</h3>
-          <p>Used in projects, improving every week</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">PostgreSQL</span><span class="tag">SQLite</span><span class="tag">Git &amp; GitHub</span><span class="tag">GitHub Actions</span><span class="tag">Power BI</span><span class="tag">Data modeling</span></div>
-        </div>
-        <div class="card tier">
-          <h3><span class="meter" aria-hidden="true"><i class="on"></i><i></i><i></i></span>Learning next</h3>
-          <p>On my roadmap through early 2027</p>
-          <div class="tags"><span class="tag">Airflow</span><span class="tag">dbt</span><span class="tag">Docker</span><span class="tag">BigQuery</span><span class="tag">AWS</span><span class="tag">Spark</span></div>
-        </div>
-      </div>
-    </section>
+  <!-- ===================== CERTIFICATIONS ===================== -->
+  <section id="certifications" aria-labelledby="cert-h">
+    <div class="section-head">
+      <h2 id="cert-h">Certifications</h2>
+      <p>Each one links to a record you can check</p>
+    </div>
+    <div class="ruled-wrap">
+      <table class="ruled stack">
+        <caption class="sr">Certifications</caption>
+        <thead><tr><th scope="col">Credential</th><th scope="col">Issuer</th><th scope="col">Earned</th><th scope="col">Proof</th></tr></thead>
+        <tbody>
+          <tr><td>SQL Associate</td><td class="m-col">DataCamp</td><td class="when">Sep 2025</td><td><a href="https://www.datacamp.com/certificate/SQA0013884652731" target="_blank" rel="noopener">Verify <span class="data">SQA0013884652731</span></a></td></tr>
+          <tr><td>Python Data Associate</td><td class="m-col">DataCamp</td><td class="when">Jul 2025</td><td><a href="https://www.datacamp.com/certificate/PDA0011794168498" target="_blank" rel="noopener">Verify <span class="data">PDA0011794168498</span></a></td></tr>
+          <tr><td>Data Analytics Essentials</td><td class="m-col">Cisco Networking Academy</td><td class="when">Oct 2026</td><td><a href="https://www.credly.com/badges/3f4ae4a8-a475-4288-aedd-4715f2ce79fa" target="_blank" rel="noopener">Verify on Credly</a></td></tr>
+          <tr><td>Introduction to Data Science</td><td class="m-col">Cisco Networking Academy</td><td class="when">Aug 2026</td><td><a href="https://www.credly.com/badges/0ed6adde-ae69-4f7d-bd99-2ca5224e51c5" target="_blank" rel="noopener">Verify on Credly</a></td></tr>
+          <tr><td>Fundamentals of Data Analytics with Power BI</td><td class="m-col">DataSense Analytics</td><td class="when">Sep 2025</td><td><a href="https://drive.google.com/file/d/1m6LCgNVOfwHWNG8Uc9hI1p9O1h8YVMda/view" target="_blank" rel="noopener">View certificate</a></td></tr>
+          <tr><td>Fundamentals of Statistics with Microsoft Excel</td><td class="m-col">DataSense Analytics</td><td class="when">May 2025</td><td><a href="https://drive.google.com/drive/folders/1WQstRkKXZ0Zn-U6NJsaM_QZMG2MD7Zlw" target="_blank" rel="noopener">View certificate</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-    <!-- ========== LEARNING ========== -->
-    <section id="learning" aria-labelledby="learn-h">
-      <p class="eyebrow">Learning in public</p>
-      <h2 id="learn-h">A 12-week plan built around shipping, not badges</h2>
-      <p class="lede">Started October 12, 2026. Each phase ends with a project in the "Building now" list above.</p>
-
-      <div class="learn-grid mt-8">
-        <div>
-          <article class="card repo">
-            <h3><a href="https://github.com/CertJay/python-zero-to-de" target="_blank" rel="noopener">python-zero-to-de</a></h3>
-            <p>My public study repo: 21 modules from zero Python to a production-style pipeline. Every exercise is checked by automated tests and committed as I go.</p>
-            <div class="facts">
-              <div class="fact"><b>21</b><span>modules</span></div>
-              <div class="fact"><b>~270</b><span>automated tests</span></div>
-            </div>
-          </article>
-          <ol class="phases">
-            <li class="phase now"><div class="when"><b>Weeks 1–4</b>to Nov 8</div><div>Read and clean data: Python, pandas, SQL joins</div></li>
-            <li class="phase"><div class="when"><b>Weeks 5–8</b>to Dec 6</div><div>Extract and load: PDFs, databases, modeling</div></li>
-            <li class="phase"><div class="when"><b>Weeks 9–12</b>to Jan 3</div><div>Real pipelines: scheduling, Docker, docs</div></li>
-          </ol>
-        </div>
-        <div>
-          <p class="label mb-4">Log</p>
-          <ol class="log" reversed>
-            <li><time datetime="2026-10-29">Oct 29, 2026</time><p>Redesigned this site for hiring managers. Added e-QUAART and the School Division Dashboard as case studies.</p></li>
-            <li><time datetime="2026-10-29">Oct 29, 2026</time><p>Moved the site to GitHub Pages so it lives next to my code.</p></li>
-            <li><time datetime="2026-10-21">Oct 21, 2026</time><p>Earned Cisco Data Analytics Essentials: SQL, Excel and Tableau for analysis, plus the data lifecycle.</p></li>
-            <li><time datetime="2026-10-12">Oct 12, 2026</time><p>Started the 12-week plan. Rule: every topic has to connect to a task I already do at work.</p></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== CERTIFICATIONS ========== -->
-    <section id="certifications" aria-labelledby="cert-h">
-      <p class="eyebrow">Certifications</p>
-      <h2 id="cert-h" class="mb-8">Credentials you can verify</h2>
-      <div class="certs">
-        <div class="card cert"><div class="name">SQL Associate</div><div class="meta">DataCamp · Sep 2025 · ID SQA0013884652731</div><a href="https://www.datacamp.com/certificate/SQA0013884652731" target="_blank" rel="noopener">Verify on DataCamp</a></div>
-        <div class="card cert"><div class="name">Python Data Associate</div><div class="meta">DataCamp · Jul 2025 · ID PDA0011794168498</div><a href="https://www.datacamp.com/certificate/PDA0011794168498" target="_blank" rel="noopener">Verify on DataCamp</a></div>
-        <div class="card cert"><div class="name">Data Analytics Essentials</div><div class="meta">Cisco Networking Academy · Oct 2026</div><a href="https://www.credly.com/badges/3f4ae4a8-a475-4288-aedd-4715f2ce79fa" target="_blank" rel="noopener">Verify on Credly</a></div>
-        <div class="card cert"><div class="name">Introduction to Data Science</div><div class="meta">Cisco Networking Academy · Aug 2026</div><a href="https://www.credly.com/badges/0ed6adde-ae69-4f7d-bd99-2ca5224e51c5" target="_blank" rel="noopener">Verify on Credly</a></div>
-        <div class="card cert"><div class="name">Fundamentals of Data Analytics with Power BI</div><div class="meta">DataSense Analytics · Sep 2025 · ID STF-24-7153886</div><a href="https://drive.google.com/file/d/1m6LCgNVOfwHWNG8Uc9hI1p9O1h8YVMda/view" target="_blank" rel="noopener">View certificate</a></div>
-        <div class="card cert"><div class="name">Fundamentals of Statistics with Microsoft Excel</div><div class="meta">DataSense Analytics · May 2025 · ID DAPh-25-347234</div><a href="https://drive.google.com/drive/folders/1WQstRkKXZ0Zn-U6NJsaM_QZMG2MD7Zlw" target="_blank" rel="noopener">View certificate</a></div>
-      </div>
-    </section>
-
-    <!-- ========== CONTACT ========== -->
-    <section id="contact" aria-labelledby="contact-h">
-      <div class="card contact">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2 id="contact-h">Need someone who understands both the requirement and the data?</h2>
-          <p class="lede">I'm open to remote junior data engineering, analytics engineering and data-focused BA roles, full-time or contract.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="mailto:migueljayfaustino@gmail.com"><svg><use href="#i-mail"/></svg>Email me</a>
-            <a class="btn" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Resume (PDF)</a>
-          </div>
-        </div>
-        <div class="channels">
-          <div class="channel">
-            <div><div class="label">Email</div><div class="val" id="email">migueljayfaustino@gmail.com</div></div>
-            <button class="btn btn-sm copy" id="copy-email" type="button">Copy</button>
-          </div>
-          <div class="channel">
-            <div><div class="label">LinkedIn</div><div class="val"><a href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener">miguel-jay-faustino</a></div></div>
-          </div>
-          <div class="channel">
-            <div><div class="label">GitHub</div><div class="val"><a href="https://github.com/CertJay" target="_blank" rel="noopener">CertJay</a></div></div>
-          </div>
-          <div class="channel">
-            <div><div class="label">Location</div><div class="val">Cavite, Philippines · UTC+8</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <div class="section-head">
+      <h2 id="contact-h">Get in touch</h2>
+    </div>
+    <p class="lead">I'm open to remote junior data engineering, analytics engineering and data-focused BA roles, full-time or contract.</p>
+    <div class="mail">
+      <a href="mailto:migueljayfaustino@gmail.com" id="email">migueljayfaustino@gmail.com</a>
+      <button class="btn quiet small" type="button" id="copy">Copy address</button>
+    </div>
+    <div class="links">
+      <a href="resume/Miguel-Jay-Faustino-Resume.pdf" download>Download resume</a>
+      <a href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/CertJay" target="_blank" rel="noopener">GitHub</a>
+      <span class="muted">Cavite, Philippines, UTC+8</span>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>Miguel Jay Faustino · 2026</span>
-    <span>Last updated October 29, 2026</span>
+  <div class="ledger">
+    <span>Miguel Jay Faustino, 2026</span>
+    <span>Last updated 29 October 2026</span>
   </div>
 </footer>
 
 <script>
-document.getElementById('copy-email').addEventListener('click', function () {
-  var btn = this, el = document.getElementById('email');
-  function done(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = 'Copy'; }, 1600); }
-  function fallback(){
-    var r = document.createRange(); r.selectNodeContents(el);
-    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
-  }
-  try { navigator.clipboard.writeText(el.textContent).then(function(){ done('Copied'); }, fallback); }
-  catch (e) { fallback(); }
+/* ---------- copy email ---------- */
+document.getElementById('copy').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent;
+  function done(m){ btn.textContent = m; setTimeout(function(){ btn.textContent = 'Copy address'; }, 1600); }
+  try { navigator.clipboard.writeText(text).then(function(){ done('Copied'); }, function(){ done('Press Ctrl+C'); }); }
+  catch (e) { done('Press Ctrl+C'); }
 });
+
+/* ---------- the live sheet ----------
+   Five rules, applied in order. Each row ends loaded, quarantined or dropped,
+   and the counts always reconcile back to the rows that came in. */
+(function () {
+  var RAW = [
+    {school:'Luntian ES',               item:'Laptop',    qty:'5 pcs',   serial:'LT-0412', cond:'svc'},
+    {school:'LUNTIAN ELEM. SCHOOL',     item:'Projector', qty:'2',       serial:'PJ-1180', cond:'Serviceable'},
+    {school:'Maligaya ES',              item:'Desktop',   qty:'3 units', serial:'',        cond:'unsvc'},
+    {school:'maligaya es ',             item:'Laptop',    qty:'1',       serial:'LT-0533', cond:'Serviceable'},
+    {school:'Sampaguita NHS',           item:'Printer',   qty:'1 pc',    serial:'PR-2207', cond:'For repair'},
+    {school:'Luntian Elementary School',item:'Laptop',    qty:'5',       serial:'LT-0412', cond:'Serviceable'},
+    {school:'Sampaguita NHS',           item:'Tablet',    qty:'12 pcs',  serial:'TB-3301', cond:'SVC.'},
+    {school:'Maligaya ES',              item:'Router',    qty:'—',       serial:'RT-0090', cond:'Serviceable'},
+    {school:'Luntian ES',               item:'Smart TV',  qty:'1 unit',  serial:'TV-0751', cond:'for repair'},
+    {school:'Sampaguita N.H.S.',        item:'Desktop',   qty:'6',       serial:'DT-1402', cond:'Unserviceable'}
+  ];
+  var key = function (s) { return String(s).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim(); };
+  var SCHOOL = {'luntian es':'Luntian ES','luntian elem school':'Luntian ES','luntian elementary school':'Luntian ES',
+                'maligaya es':'Maligaya ES','sampaguita nhs':'Sampaguita NHS','sampaguita n h s':'Sampaguita NHS'};
+  var COND = {'svc':'Serviceable','serviceable':'Serviceable','unsvc':'Unserviceable','unserviceable':'Unserviceable','for repair':'For repair'};
+  var isNum = function (v) { return typeof v === 'number' || /^\d+$/.test(String(v).trim()); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#demo [data-rule]'));
+  var on = function (r) { return document.querySelector('#demo [data-rule="' + r + '"]').checked; };
+  var tbody = document.getElementById('rows');
+
+  function run() {
+    var rows = RAW.map(function (r, i) {
+      var o = {n:i+1, school:r.school, item:r.item, qty:r.qty, serial:r.serial, cond:r.cond, fix:{}, notes:[], status:'loaded', tone:''};
+      if (on('names')) {
+        var c = SCHOOL[key(o.school)];
+        if (c && c !== o.school) { o.school = c; o.fix.school = 1; o.notes.push('renamed school'); }
+      }
+      if (on('qty') && !isNum(o.qty)) {
+        var m = String(o.qty).match(/^\s*(\d+)/);
+        if (m) { o.notes.push('"' + o.qty + '" to ' + m[1]); o.qty = +m[1]; o.fix.qty = 1; }
+      }
+      if (on('cond')) {
+        var k = COND[key(o.cond)];
+        if (k && k !== o.cond) { o.cond = k; o.fix.cond = 1; o.notes.push('condition fixed'); }
+      }
+      if (on('reject')) {
+        if (!o.serial) { o.status = 'quarantined'; o.notes = ['no serial number']; }
+        else if (!isNum(o.qty)) { o.status = 'quarantined'; o.notes = [String(o.qty).trim() === '—' ? 'quantity missing' : 'quantity is text']; }
+      }
+      return o;
+    });
+    if (on('dedupe')) {
+      var seen = {};
+      rows.forEach(function (o) {
+        if (o.status !== 'loaded') return;
+        var k = key(o.school) + '|' + o.serial;
+        if (seen[k]) { o.status = 'dropped'; o.notes = ['duplicate of row ' + seen[k]]; }
+        else seen[k] = o.n;
+      });
+    }
+    render(rows);
+  }
+
+  function cell(o, f, cls) {
+    var v = o[f], inner;
+    if (f === 'serial' && !v) inner = '<em class="blank">blank</em>';
+    else inner = o.fix[f] ? '<span class="fix">' + esc(v) + '</span>' : '<span>' + esc(v) + '</span>';
+    return '<td' + (cls ? ' class="' + cls + '"' : '') + '>' + inner + '</td>';
+  }
+
+  function render(rows) {
+    var html = '';
+    rows.forEach(function (o) {
+      var mark = o.status === 'quarantined' ? '✗' : o.status === 'dropped' ? '–' : '✓';
+      var tone = o.status === 'quarantined' ? 'red' : o.status === 'dropped' ? '' : (o.notes.length ? 'blue' : '');
+      html += '<tr class="' + o.status + '"><td class="n data">' + o.n + '</td><td class="mk" aria-label="' + o.status + '">' + mark + '</td>'
+        + cell(o, 'school') + cell(o, 'item', 'c-item') + cell(o, 'qty', 'q data') + cell(o, 'serial', 'data c-serial') + cell(o, 'cond', 'c-cond')
+        + '<td class="note pen ' + tone + '">' + esc(o.notes.join(', ')) + '</td></tr>';
+    });
+    tbody.innerHTML = html;
+
+    var n = rows.length,
+        L = rows.filter(function (o) { return o.status === 'loaded'; }),
+        Q = rows.filter(function (o) { return o.status === 'quarantined'; }).length,
+        D = rows.filter(function (o) { return o.status === 'dropped'; }).length;
+    document.getElementById('eq').innerHTML = n + ' rows in = <span class="g">' + L.length + ' loaded</span> + <span class="r">' + Q + ' quarantined</span> + <span class="d">' + D + ' dropped</span>';
+
+    var text = L.filter(function (o) { return !isNum(o.qty); }).length;
+    var total = document.getElementById('total'), why = document.getElementById('why');
+    if (text) {
+      total.textContent = '#VALUE!'; total.className = 'total data err';
+      why.textContent = 'Quantity total can’t be computed: ' + text + ' loaded ' + (text === 1 ? 'row has' : 'rows have') + ' text in a number column.';
+    } else {
+      var sum = L.reduce(function (a, o) { return a + Number(o.qty); }, 0);
+      total.textContent = sum + ' units'; total.className = 'total data';
+      var dupMissed = !on('dedupe') ? 'Row 6 repeats row 1; switch on rule 5 to drop it.'
+        : (!on('names') ? 'Rule 5 matches on school and serial, so it can’t see that row 6 repeats row 1 until names are standardized.' : 'Every row is accounted for, and the total counts each item once.');
+      why.textContent = 'Total quantity of loaded rows. ' + dupMissed;
+    }
+  }
+
+  var timer = null;
+  function stopAuto() { if (timer) { clearTimeout(timer); timer = null; } }
+  boxes.forEach(function (b) { b.addEventListener('change', function () { stopAuto(); run(); }); });
+  document.getElementById('run').addEventListener('click', function () { stopAuto(); boxes.forEach(function (b) { b.checked = true; }); run(); });
+  document.getElementById('reset').addEventListener('click', function () { stopAuto(); boxes.forEach(function (b) { b.checked = false; }); run(); });
+
+  run();
+  /* one orchestrated moment: the rules switch on in order, once */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { boxes.forEach(function (b) { b.checked = true; }); run(); }
+  else {
+    var i = 0;
+    (function step() {
+      timer = setTimeout(function () {
+        if (i >= boxes.length) { timer = null; return; }
+        boxes[i++].checked = true; run(); step();
+      }, i === 0 ? 1100 : 750);
+    })();
+  }
+})();
 </script>
 </body>
 </html>
