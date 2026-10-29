@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Miguel Jay Faustino · Data Engineering Portfolio</title>
+<meta name="description" content="Miguel Jay Faustino: Business Analyst building toward data engineering. Projects, learning log, experience and certifications.">
+<meta name="author" content="Miguel Jay Faustino">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://certjay.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://certjay.github.io/">
+<meta property="og:title" content="Miguel Jay Faustino · Data Engineering Portfolio">
+<meta property="og:description" content="A Business Analyst who builds the data pipelines behind the systems he documents. Projects, learning log and verifiable certifications.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232445C2'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one column of sections, read top to bottom like a pipeline: sources, then stages, then output. */
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#13203A; --muted:#55627B; --line:#DCE2EB;
+  --accent:#2445C2; --accent-soft:#E7ECFB;
+  --ok:#1D7550; --ok-soft:#E0F1E8; --warn:#985A0C; --warn-soft:#F6EBD8; --plan:#55627B; --plan-soft:#ECEFF4;
+  --display:'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C111A; --surface:#141B27; --ink:#E5E9F1; --muted:#9BA6BB; --line:#253042;
+  --accent:#8FA7FF; --accent-soft:#1B2548;
+  --ok:#72D3A6; --ok-soft:#12302A; --warn:#E8B56C; --warn-soft:#33250F; --plan:#9BA6BB; --plan-soft:#1C2433;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C111A; --surface:#141B27; --ink:#E5E9F1; --muted:#9BA6BB; --line:#253042;
+  --accent:#8FA7FF; --accent-soft:#1B2548;
+  --ok:#72D3A6; --ok-soft:#12302A; --warn:#E8B56C; --warn-soft:#33250F; --plan:#9BA6BB; --plan-soft:#1C2433;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.mark{font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.mark span{color:var(--accent)}
+.links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.links::-webkit-scrollbar{display:none}
+.links a{font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap}
+.links a:hover{color:var(--ink);background:var(--accent-soft)}
+
+/* type */
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(26px,4vw,34px);font-weight:700;line-height:1.15}
+h3{font-size:19px;font-weight:700;line-height:1.3}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.lede{color:var(--muted);max-width:62ch;margin:12px 0 0}
+section{padding-block:64px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+/* hero */
+.hero{padding-block:56px 48px}
+.hero h1{font-size:clamp(38px,7vw,64px);font-weight:800;line-height:1.02}
+.hero .role{font-family:var(--mono);font-size:13px;color:var(--muted);margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px}
+.hero .thesis{font-size:clamp(19px,2.6vw,23px);line-height:1.45;max-width:30ch;margin:22px 0 0;font-weight:500}
+.hero .thesis em{font-style:normal;color:var(--accent)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 15px var(--body);padding:10px 16px;border-radius:8px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+
+/* career as a pipeline */
+.pipe{margin-top:44px}
+.pipe-label{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 12px}
+.stages{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.stage{position:relative;padding:16px 16px 16px 0}
+.stage::before{content:"";position:absolute;top:24px;left:14px;right:0;height:2px;background:var(--line)}
+.stage:last-child::before{display:none}
+.node{position:relative;z-index:1;width:16px;height:16px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);margin:0 0 14px}
+.stage.done .node{background:var(--accent)}
+.stage.now .node{background:var(--bg);box-shadow:0 0 0 4px var(--accent-soft)}
+.stage .step{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.stage .what{font-weight:600;margin:2px 0 4px}
+.stage .where{font-size:14px;color:var(--muted);line-height:1.5}
+@media (max-width:720px){
+  .stages{grid-template-columns:1fr}
+  .stage{padding:0 0 22px 32px}
+  .stage::before{top:16px;left:7px;right:auto;bottom:0;width:2px;height:auto}
+  .node{position:absolute;left:0;top:2px;margin:0}
+}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;margin-top:28px}
+.about-grid p{margin:0 0 14px;max-width:62ch}
+.edges{display:grid;gap:12px;align-content:start}
+.edge{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.edge b{display:block;font-family:var(--display);font-size:16px;margin-bottom:4px}
+.edge span{font-size:14.5px;color:var(--muted)}
+@media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:24px}}
+
+/* projects */
+.projects{display:grid;gap:16px;margin-top:28px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:24px}
+.proj.flag{border-color:var(--accent)}
+.proj .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:8px}
+.pill{font-family:var(--mono);font-size:11.5px;font-weight:500;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.wip{background:var(--warn-soft);color:var(--warn)}
+.pill.plan{background:var(--plan-soft);color:var(--plan)}
+.pill.flagship{background:var(--accent-soft);color:var(--accent)}
+.proj p{margin:0 0 10px;font-size:15.5px}
+.proj .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+.proj aside{border-left:1px solid var(--line);padding-left:20px;font-size:14px;color:var(--muted);min-width:0}
+.proj aside .k{margin-top:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink)}
+.flow{font-family:var(--mono);font-size:12.5px;color:var(--ink);line-height:1.9;overflow-x:auto;white-space:nowrap;padding:8px 10px;background:var(--bg);border-radius:6px;margin-top:6px}
+@media (max-width:760px){.proj{grid-template-columns:1fr;gap:12px;padding:20px}.proj aside{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}}
+
+/* learning */
+.learn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:28px}
+@media (max-width:820px){.learn-grid{grid-template-columns:1fr}}
+.phases{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.phase{display:grid;grid-template-columns:86px minmax(0,1fr);gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.phase.now{border-color:var(--accent)}
+.phase .wk{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.phase .wk b{display:block;color:var(--ink);font-weight:500}
+.phase .goal{font-weight:600}
+.phase .ms{font-size:14px;color:var(--muted)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:4px 0 22px}
+.day{text-align:center;padding:10px 2px;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+.day small{display:block;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.day span{display:block;font-size:12.5px;font-weight:500;margin-top:2px;line-height:1.25}
+.day.build{background:var(--accent-soft);border-color:transparent}
+.log{list-style:none;padding:0;margin:0;border-left:2px solid var(--line)}
+.log li{padding:0 0 18px 18px;position:relative}
+.log li::before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.log time{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.log p{margin:2px 0 0;font-size:15px}
+
+/* experience */
+.jobs{margin-top:28px;display:grid;gap:0}
+.job{display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.job:first-child{border-top:0;padding-top:4px}
+.job .when{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.job .org{color:var(--muted);font-size:15px;margin:2px 0 8px}
+.job ul{margin:0;padding-left:18px}
+.job li{margin:0 0 5px;font-size:15px}
+.job .angle{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-top:6px}
+@media (max-width:680px){.job{grid-template-columns:1fr;gap:4px}}
+.edu{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
+.edu .k{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin-top:20px}
+.skill{padding:16px 18px;border:1px solid var(--line);border-radius:10px}
+.skill b{display:block;font-size:14px;margin-bottom:6px}
+
+/* certs */
+.certs{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.cert{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.cert .name{font-weight:600;line-height:1.35}
+.cert .meta{font-size:13.5px;color:var(--muted)}
+.cert a{font-size:13.5px;margin-top:4px}
+.note{font-size:14.5px;color:var(--muted);max-width:62ch;margin-top:18px}
+
+/* contact */
+.contact{padding-block:64px 48px}
+.contact-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:760px){.contact-box{grid-template-columns:1fr;padding:22px}}
+.channels{display:grid;gap:10px}
+.channel{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;min-width:0}
+.channel .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.channel .val{font-size:15px;user-select:all;overflow-wrap:anywhere}
+.copy{font:500 13px var(--body);padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;flex:none}
+footer{padding-block:24px 40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">Miguel<span>.</span>Faustino</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#learning">Learning</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap">
+
+    <section class="hero" aria-labelledby="hero-name">
+      <p class="eyebrow">Business Analyst · Data Engineering in progress</p>
+      <h1 id="hero-name">Miguel Jay Faustino</h1>
+      <p class="role"><span>Cavite, Philippines</span><span>Open to remote work</span><span>BS Information Systems, Data Science</span></p>
+      <p class="thesis">I'm a Business Analyst who builds <em>the data pipelines behind the systems I document.</em></p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="https://github.com/CertJay" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+
+      <div class="pipe">
+        <p class="pipe-label">My path so far, read as a pipeline</p>
+        <ol class="stages">
+          <li class="stage done">
+            <div class="node" aria-hidden="true"></div>
+            <div class="step">Extract</div>
+            <div class="what">Collecting the raw data</div>
+            <div class="where">DepEd: inventories and internet subscriptions for 45 schools</div>
+          </li>
+          <li class="stage done">
+            <div class="node" aria-hidden="true"></div>
+            <div class="step">Validate</div>
+            <div class="what">Making it trustworthy</div>
+            <div class="where">TESDA: cleaning and standardizing trainee and program records</div>
+          </li>
+          <li class="stage now">
+            <div class="node" aria-hidden="true"></div>
+            <div class="step">Model</div>
+            <div class="what">Defining how systems connect</div>
+            <div class="where">Synkronous: business rules, integration logic and data flows</div>
+          </li>
+          <li class="stage">
+            <div class="node" aria-hidden="true"></div>
+            <div class="step">Automate</div>
+            <div class="what">Building the pipelines myself</div>
+            <div class="where">Next: Python and SQL ETL projects, below</div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <p class="eyebrow">About</p>
+      <h2 id="about-h">Every job I've had was a data job before I called it one.</h2>
+      <div class="about-grid">
+        <div>
+          <p>I studied Information Systems with a major in Data Science and finished as a Dean's Lister in all four years, while serving as class president and leading our mentor committee.</p>
+          <p>After graduating, I kept landing in the same place: the spreadsheet nobody trusted. At the Department of Education I consolidated equipment and connectivity data for 45 schools. At TESDA I cleaned, validated and reported on trainee records. As an IT intern I set up LAMP and LEMP servers on Ubuntu and configured routers for multi-ISP failover.</p>
+          <p>Today I work as a Business Analyst on enterprise software implementations in the hospitality sector. I write the business rules, integration matrices and test plans that describe how data should move between systems. Now I'm learning to build that movement myself, one working project at a time.</p>
+        </div>
+        <div class="edges">
+          <div class="edge"><b>I start from the requirement</b><span>As a BA I learned to ask why the data is needed before deciding how to move it.</span></div>
+          <div class="edge"><b>I care about data you can trust</b><span>Validation and reconciliation have been part of every role I've held.</span></div>
+          <div class="edge"><b>I know the domain</b><span>Hospitality operations: guest charges, billing models, ordering and P&amp;L.</span></div>
+          <div class="edge"><b>I've kept systems running</b><span>Linux servers, networking and multi-ISP redundancy, hands on.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="proj-h">
+      <p class="eyebrow">Projects</p>
+      <h2 id="proj-h">Small, real problems, solved end to end</h2>
+      <p class="lede">Each project starts with a problem I've met at work, uses synthetic or public data, and ends with something that runs. Status is shown honestly: shipped, in progress or planned.</p>
+
+      <div class="projects">
+
+        <article class="proj flag">
+          <div>
+            <div class="top"><h3>Onboard Spend Pipeline</h3><span class="pill flagship">Flagship</span><span class="pill plan">Planned · Jan 2027</span></div>
+            <p>A scheduled ETL pipeline over synthetic resort-at-sea spending data. Guest charges from different outlets are extracted, reconciled against folio totals, modeled into daily revenue tables and served to a dashboard.</p>
+            <p class="k">Why it matters</p>
+            <p>Hospitality finance teams reconcile outlet charges by hand every night. This shows how that check becomes an automated, tested job.</p>
+            <p class="k">Architecture</p>
+            <div class="flow">CSV + API (synthetic) → Python extract → validate → PostgreSQL → SQL models → Power BI<br>scheduled with Airflow · packaged with Docker</div>
+          </div>
+          <aside>
+            <p class="k">Stack</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">SQL</span><span class="tag">Airflow</span><span class="tag">Docker</span><span class="tag">Power BI</span></div>
+            <p class="k" style="margin-top:14px">Data</p>
+            <p style="margin:0">Generated in Python. No client or employer data is used.</p>
+          </aside>
+        </article>
+
+        <article class="proj">
+          <div>
+            <div class="top"><h3>Excel Validation Cleaner</h3><span class="pill wip">In progress · Nov 2026</span></div>
+            <p>A Python script that reads a messy workbook, applies validation rules (duplicates, missing required fields, inconsistent names and IDs) and writes a clean file plus an exceptions report.</p>
+            <p class="k">Why it matters</p>
+            <p>At DepEd and TESDA this check took hours by hand. A script runs it in seconds and does it the same way every time.</p>
+          </div>
+          <aside>
+            <p class="k">Stack</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">openpyxl</span></div>
+          </aside>
+        </article>
+
+        <article class="proj">
+          <div>
+            <div class="top"><h3>Invoice PDF to Database</h3><span class="pill plan">Planned · Dec 2026</span></div>
+            <p>Parses line items from supplier invoice and order PDFs, checks that line totals match the document total, and loads the results into a database that can be queried.</p>
+            <p class="k">Why it matters</p>
+            <p>Many small businesses keep their numbers inside PDFs. Getting them out is the first step of every pipeline.</p>
+          </div>
+          <aside>
+            <p class="k">Stack</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">pdfplumber</span><span class="tag">PostgreSQL</span><span class="tag">SQL</span></div>
+          </aside>
+        </article>
+
+        <article class="proj">
+          <div>
+            <div class="top"><h3>Supplier Ordering and P&amp;L Tracker</h3><span class="pill wip">In progress</span></div>
+            <p>A weekly ordering and profit-and-loss system for a local food supplier serving school feeding programs, built so the owner can see costs, margins and order volumes in one place.</p>
+            <p class="k">Why it matters</p>
+            <p>A real system for a real business, with real constraints: changing prices, weekly cycles and a user who isn't technical.</p>
+          </div>
+          <aside>
+            <p class="k">Stack</p>
+            <div class="tags"><span class="tag">Spreadsheet modeling</span><span class="tag">Reporting</span></div>
+          </aside>
+        </article>
+
+        <article class="proj">
+          <div>
+            <div class="top"><h3>Data Engineering Toolkit</h3><span class="pill ok">Shipped · Oct 2026</span></div>
+            <p>An interactive field guide to 50 data engineering tools, arranged along the pipeline from sources to dashboards. Each tool card explains what job it does and lists its common alternatives.</p>
+            <p class="k">Why it matters</p>
+            <p>Interviews ask why a tool exists, not only what it's called. I built this to learn the landscape by job.</p>
+          </div>
+          <aside>
+            <p class="k">Stack</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          </aside>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="learning" aria-labelledby="learn-h">
+      <p class="eyebrow">Learning in public</p>
+      <h2 id="learn-h">A 12-week plan built around building, not badges</h2>
+      <p class="lede">I started from almost no Python on October 12, 2026. Every week mixes theory with hands-on work, and every Saturday the main project has to do something new.</p>
+
+      <div class="learn-grid">
+        <div>
+          <p class="k eyebrow" style="color:var(--muted)">A typical week</p>
+          <div class="week" aria-label="Weekly study rhythm">
+            <div class="day"><small>Mon</small><span>Python</span></div>
+            <div class="day"><small>Tue</small><span>SQL</span></div>
+            <div class="day build"><small>Wed</small><span>Extract lab</span></div>
+            <div class="day"><small>Thu</small><span>Theory</span></div>
+            <div class="day"><small>Fri</small><span>Notes</span></div>
+            <div class="day build"><small>Sat</small><span>Build</span></div>
+            <div class="day"><small>Sun</small><span>Rest</span></div>
+          </div>
+          <ol class="phases">
+            <li class="phase now"><div class="wk"><b>Weeks 1–4</b>Oct 12 – Nov 8</div><div><div class="goal">Read and clean data</div><div class="ms">Python basics, pandas, SQL joins. Ships the Excel cleaner.</div></div></li>
+            <li class="phase"><div class="wk"><b>Weeks 5–8</b>Nov 9 – Dec 6</div><div><div class="goal">Extract and load</div><div class="ms">PDF parsing, databases, data modeling. Ships the invoice loader.</div></div></li>
+            <li class="phase"><div class="wk"><b>Weeks 9–12</b>Dec 7 – Jan 3</div><div><div class="goal">Make it a real pipeline</div><div class="ms">Scheduling, Docker, documentation. Ships the flagship pipeline.</div></div></li>
+          </ol>
+        </div>
+        <div>
+          <p class="k eyebrow" style="color:var(--muted)">Log</p>
+          <ol class="log" reversed>
+            <li><time datetime="2026-10-29">Oct 29, 2026</time><p>Moved this site to GitHub Pages so it lives next to my code. Course exercises go to <a href="https://github.com/CertJay/python-zero-to-de" target="_blank" rel="noopener">python-zero-to-de</a>.</p></li>
+            <li><time datetime="2026-10-21">Oct 21, 2026</time><p>Earned Cisco Data Analytics Essentials: SQL, Excel and Tableau for analysis, plus the data lifecycle.</p></li>
+            <li><time datetime="2026-10-20">Oct 20, 2026</time><p>Launched this site. Projects will be added as they ship.</p></li>
+            <li><time datetime="2026-10-12">Oct 12, 2026</time><p>Started the 12-week plan. The rule: every topic I study has to connect to a task I already do at work.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-h">Where I've worked with data</h2>
+      <div class="jobs">
+        <div class="job">
+          <div class="when">Apr 2026 – Present<br>Remote</div>
+          <div>
+            <h3>Business Analyst</h3>
+            <div class="org">Synkronous</div>
+            <ul>
+              <li>Lead requirements gathering and gap analysis for enterprise software implementations, covering integration logic, business rules and data flows across connected systems.</li>
+              <li>Produce single-source-of-truth documentation, UAT plans, test-case workbooks, RAID logs and integration matrices.</li>
+              <li>Run discovery workshops with clients, vendors and cross-functional teams, and align scope using Agile methods.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Nov 2025 – Mar 2026</div>
+          <div>
+            <h3>ICT Support Staff</h3>
+            <div class="org">Department of Education, Dasmariñas</div>
+            <ul>
+              <li>Consolidated ICT equipment inventories and internet-subscription data for 45 schools to regional reporting standards.</li>
+              <li>Built and maintained stakeholder databases and used advanced Excel to validate and audit billing accounts, provider ratings and connection speeds.</li>
+              <li>Supported division-wide reporting on the DepEd Computerization Program.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Aug 2025 – Oct 2025</div>
+          <div>
+            <h3>Data Management Associate</h3>
+            <div class="org">TESDA Assessment Center</div>
+            <ul>
+              <li>Managed institutional databases with a focus on accuracy, integrity and confidentiality.</li>
+              <li>Cleaned, validated and standardized trainee and program records to make reports reliable.</li>
+              <li>Produced operational and statistical reports using spreadsheets and database queries.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Feb 2025 – May 2025</div>
+          <div>
+            <h3>IT Intern</h3>
+            <div class="org">Department of Education, Dasmariñas</div>
+            <ul>
+              <li>Installed and configured LAMP and LEMP server stacks on Ubuntu.</li>
+              <li>Set up network racks, terminated and tested Cat6E cabling, and configured routers for multi-ISP redundancy.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Jan 2023</div>
+          <div>
+            <h3>Administrative Assistant</h3>
+            <div class="org">Business Permit and Licensing Office, Dasmariñas</div>
+            <ul>
+              <li>Supported more than 500 clients through permit applications and renewals while keeping sensitive records accurate and confidential.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div><h3>BS Information Systems, major in Data Science</h3><div class="k" style="margin-top:4px">Kolehiyo ng Lungsod ng Dasmariñas</div></div>
+        <div class="k">2021 – 2025 · Dean's Lister, all four years · Class President and Vice President · Mentor Committee Head</div>
+      </div>
+
+      <div class="skills">
+        <div class="skill"><b>Languages and querying</b>Python (learning), SQL, MySQL</div>
+        <div class="skill"><b>Data and BI</b>Advanced Excel, Google Sheets, Power BI</div>
+        <div class="skill"><b>Data practices</b>Cleaning, validation, consolidation, reporting</div>
+        <div class="skill"><b>Infrastructure</b>Linux (Ubuntu), LAMP/LEMP, networking, multi-ISP</div>
+        <div class="skill"><b>Analysis</b>Requirements, gap analysis, UAT, Agile, SDLC</div>
+        <div class="skill"><b>Learning next</b>pandas, PostgreSQL, Airflow, dbt, Docker</div>
+      </div>
+    </section>
+
+    <section id="certifications" aria-labelledby="cert-h">
+      <p class="eyebrow">Certifications</p>
+      <h2 id="cert-h">Credentials, with links you can verify</h2>
+      <div class="certs">
+        <div class="cert"><div class="name">Introduction to Data Science</div><div class="meta">Cisco Networking Academy · Aug 2026</div><a href="https://www.credly.com/badges/0ed6adde-ae69-4f7d-bd99-2ca5224e51c5" target="_blank" rel="noopener">Verify on Credly</a></div>
+        <div class="cert"><div class="name">SQL Associate</div><div class="meta">DataCamp · Sep 2025 · ID SQA0013884652731</div><a href="https://www.datacamp.com/certificate/SQA0013884652731" target="_blank" rel="noopener">Verify on DataCamp</a></div>
+        <div class="cert"><div class="name">Python Data Associate</div><div class="meta">DataCamp · Jul 2025 · ID PDA0011794168498</div><a href="https://www.datacamp.com/certificate/PDA0011794168498" target="_blank" rel="noopener">Verify on DataCamp</a></div>
+        <div class="cert"><div class="name">Fundamentals of Data Analytics with Power BI</div><div class="meta">DataSense Analytics · Sep 2025 · ID STF-24-7153886</div><a href="https://drive.google.com/file/d/1m6LCgNVOfwHWNG8Uc9hI1p9O1h8YVMda/view" target="_blank" rel="noopener">View certificate</a></div>
+        <div class="cert"><div class="name">Fundamentals of Statistics with Microsoft Excel</div><div class="meta">DataSense Analytics · May 2025 · ID DAPh-25-347234</div><a href="https://drive.google.com/drive/folders/1WQstRkKXZ0Zn-U6NJsaM_QZMG2MD7Zlw" target="_blank" rel="noopener">View certificate</a></div>
+        <div class="cert"><div class="name">Data Analytics Essentials</div><div class="meta">Cisco Networking Academy · Oct 2026</div><a href="https://www.credly.com/badges/3f4ae4a8-a475-4288-aedd-4715f2ce79fa" target="_blank" rel="noopener">Verify on Credly</a></div>
+      </div>
+      <p class="note">Certificates show what I've studied. The projects above show what I can build, and that's where most of my time goes.</p>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <div class="contact-box">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-h">Looking for someone who understands both the requirement and the data?</h2>
+          <p class="lede">I'm open to remote roles in data engineering, analytics engineering and data-focused business analysis.</p>
+        </div>
+        <div class="channels">
+          <div class="channel">
+            <div style="min-width:0"><div class="lbl">Email</div><div class="val" id="email">migueljayfaustino@gmail.com</div></div>
+            <button class="copy" id="copy-email" type="button">Copy</button>
+          </div>
+          <div class="channel">
+            <div style="min-width:0"><div class="lbl">LinkedIn</div><div class="val"><a href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener">miguel-jay-faustino</a></div></div>
+          </div>
+          <div class="channel">
+            <div style="min-width:0"><div class="lbl">GitHub</div><div class="val"><a href="https://github.com/CertJay" target="_blank" rel="noopener">CertJay</a></div></div>
+          </div>
+          <div class="channel">
+            <div style="min-width:0"><div class="lbl">Location</div><div class="val">Cavite, Philippines (UTC+8)</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Miguel Jay Faustino · 2026</span>
+    <span>Last updated October 29, 2026</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copy-email').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent;
+  function done(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = 'Copy'; }, 1600); }
+  function fallback(){
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
+  }
+  try {
+    navigator.clipboard.writeText(text).then(function(){ done('Copied'); }, fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+
+</body>
+</html>
