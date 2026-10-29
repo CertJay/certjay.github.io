@@ -266,7 +266,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
     <section id="projects" aria-labelledby="proj-h">
       <p class="eyebrow">Projects</p>
       <h2 id="proj-h">Small, real problems, solved end to end</h2>
-      <p class="lede">Each project starts with a problem I've met at work, uses synthetic or public data, and ends with something that runs. Status is shown honestly: shipped, in progress or planned.</p>
+      <p class="lede">Each project starts with a problem I've met at work, uses synthetic or public data (or, where it is internal, stays private), and ends with something that runs. Status is shown honestly: shipped, in progress or planned.</p>
 
       <div class="projects">
 
@@ -284,6 +284,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
             <div class="tags"><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">SQL</span><span class="tag">Airflow</span><span class="tag">Docker</span><span class="tag">Power BI</span></div>
             <p class="k" style="margin-top:14px">Data</p>
             <p style="margin:0">Generated in Python. No client or employer data is used.</p>
+          </aside>
+        </article>
+
+        <article class="proj">
+          <div>
+            <div class="top"><h3>School Division Dashboard</h3><span class="pill ok">Shipped · Oct 2026</span></div>
+            <p>A multi-page Streamlit app that turns a school division's Excel records into one dashboard: personnel, equipment inventory, DCP ICT equipment health and ISP accounts. It has a landing page, a sign-in screen and role-based views, so each office sees only its own tabs: HR sees personnel, Supply sees equipment and DCP, and ICT and admin see everything.</p>
+            <p class="k">Why it matters</p>
+            <p>The same questions (how many staff, which equipment is unserviceable, which schools have weak internet) used to mean opening separate workbooks. Here they are KPIs, charts, filters and CSV exports in one place.</p>
+            <p class="k">Architecture</p>
+            <div class="flow">Excel workbooks → pandas cleaning and flags → Plotly charts → Streamlit tabs<br>role-based access · school filters · CSV export</div>
+          </div>
+          <aside>
+            <p class="k">Stack</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">pandas</span><span class="tag">Plotly</span><span class="tag">Excel</span></div>
+            <p class="k" style="margin-top:14px">Data</p>
+            <p style="margin:0">Internal records, so the data and code are not public. A synthetic-data demo version is planned.</p>
           </aside>
         </article>
 
