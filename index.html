@@ -320,13 +320,9 @@ section{padding-block:var(--s-16);border-top:var(--bw) solid var(--line)}
 .legend{font-size:12.5px;color:var(--muted);display:grid;gap:var(--s-1)}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
 .legend .c1{background:var(--accent)}.legend .c2{background:var(--ok)}.legend .c3{background:var(--warn)}.legend .c4{background:var(--plan)}
-.matrix-wrap{overflow-x:auto;margin-top:var(--s-2)}
-.matrix{border-collapse:collapse;font-size:var(--t-sm);min-width:520px;width:100%}
-.matrix th,.matrix td{border:var(--bw) solid var(--line);padding:var(--s-2) 10px;text-align:center}
-.matrix th:first-child,.matrix td:first-child{text-align:left}
-.matrix th{font:500 var(--t-xs) var(--mono);color:var(--muted);background:var(--bg)}
-.matrix td.y{color:var(--ok);font-weight:600}
-.matrix td.n{color:var(--muted)}
+.disclaimer{margin-top:var(--s-3);padding:var(--s-3) var(--s-4);border:var(--bw) solid var(--line);border-left:3px solid var(--warn);border-radius:var(--r-sm);background:var(--warn-soft);color:var(--ink);font-size:var(--t-sm);line-height:1.5;max-width:none}
+.more p.disclaimer{font-size:var(--t-sm);max-width:none}
+.disclaimer b{color:var(--warn);font-weight:600}
 .tabgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px;margin-top:var(--s-2)}
 .tabcard{border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:var(--s-3) var(--s-4);background:var(--bg)}
 .tabcard b{display:block;font-size:14.5px;margin-bottom:6px}
@@ -435,7 +431,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
           <p class="thesis">I turn messy operational records into systems people trust. I've shipped an assessment-data platform and a role-based dashboard for a schools division, and I run requirements and test design on a 20-application hospitality software rollout.</p>
           <div class="cta">
             <a class="btn btn-primary" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Download resume</a>
-            <a class="btn" href="mailto:migueljayfaustino@gmail.com"><svg><use href="#i-mail"/></svg>Email me</a>
+            <a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=migueljayfaustino@gmail.com&amp;su=Reaching%20out%20via%20your%20portfolio" target="_blank" rel="noopener"><svg><use href="#i-mail"/></svg>Email me</a>
             <a class="btn" href="https://github.com/CertJay" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
             <a class="btn" href="https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/" target="_blank" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
           </div>
@@ -585,7 +581,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
             </div>
             <div class="block">
               <p class="label">Why it's private</p>
-              <p class="muted">It runs on internal records, so the code and data aren't public. A synthetic-data demo version is planned. Sign-in is a simple in-app check suited to an internal prototype, not production authentication.</p>
+              <p class="muted">It runs on internal records, so the code and data aren't public. A synthetic-data demo version is planned.</p>
             </div>
           </div>
         </div>
@@ -625,21 +621,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
               </div>
             </div>
           </div>
-          <p class="note">Illustration only. Layout and chart types match the app; the numbers do not.</p>
-
-          <p class="label">Who sees what</p>
-          <div class="matrix-wrap">
-            <table class="matrix">
-              <caption class="sr">Tab access by role</caption>
-              <thead><tr><th>Role</th><th>Personnel</th><th>Equipment</th><th>DCP ICT</th><th>ISP</th></tr></thead>
-              <tbody>
-                <tr><td>HR officer</td><td class="y">Yes</td><td class="n">–</td><td class="n">–</td><td class="n">–</td></tr>
-                <tr><td>Supply officer</td><td class="n">–</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">–</td></tr>
-                <tr><td>ICT officers (2)</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-                <tr><td>Super admin</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <p class="disclaimer" role="note"><b>Disclaimer:</b> This preview is a mock-up. The layout and chart types match the app, but every number shown is made up. No internal records appear on this page.</p>
 
           <p class="label">What each tab does</p>
           <div class="tabgrid">
@@ -648,7 +630,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
             <div class="tabcard"><b>DCP ICT Equipment</b><ul><li>Condition rates as counts and percentages</li><li>By package and year received</li><li>Serviceability rate per school, colour-banded</li></ul></div>
             <div class="tabcard"><b>ISP Accounts</b><ul><li>Providers, connection and subscription types</li><li>Signal quality, ratings and speed tests</li><li>Monthly cost and spend per school</li></ul></div>
           </div>
-          <p class="note">Built by merging two prototypes: a four-tab analysis app and a separate landing, sign-in and access-control app.</p>
+          <p class="disclaimer" role="note"><b>Disclaimer:</b> This is an internal prototype, built by merging a four-tab analysis app with a separate landing and sign-in app. Its sign-in is a simple in-app check, not production authentication.</p>
         </details>
       </article>
 
@@ -803,7 +785,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
           <h2 id="contact-h">Need someone who understands both the requirement and the data?</h2>
           <p class="lede">I'm open to remote data engineering, analytics engineering and data-focused BA roles, full-time or contract.</p>
           <div class="cta">
-            <a class="btn btn-primary" href="mailto:migueljayfaustino@gmail.com"><svg><use href="#i-mail"/></svg>Email me</a>
+            <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=migueljayfaustino@gmail.com&amp;su=Reaching%20out%20via%20your%20portfolio" target="_blank" rel="noopener"><svg><use href="#i-mail"/></svg>Email me</a>
             <a class="btn" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Resume (PDF)</a>
           </div>
         </div>
