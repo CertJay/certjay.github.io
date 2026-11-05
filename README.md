@@ -2,7 +2,7 @@
 
 Personal portfolio of **Miguel Jay Faustino**: Business Analyst moving into data engineering.
 
-Live site: https://certjay.github.io
+Live site: https://miguel-jay-faustino.vercel.app (also mirrored at https://certjay.github.io)
 
 ## What's here
 
