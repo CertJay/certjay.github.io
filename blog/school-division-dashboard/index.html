@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>From 46 Workbooks to One Dashboard | Miguel Jay Faustino</title>
+<meta name="description" content="How I collected, consolidated and served a school division's personnel, equipment and internet data with Python, pandas and Streamlit, and what broke along the way.">
+<meta name="author" content="Miguel Jay Faustino">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://miguel-jay-faustino.vercel.app/blog/school-division-dashboard">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Miguel Jay Faustino">
+<meta property="og:url" content="https://miguel-jay-faustino.vercel.app/blog/school-division-dashboard">
+<meta property="og:title" content="From 46 workbooks to one dashboard">
+<meta property="og:description" content="Field-collected school data, a pandas consolidation pipeline with data-quality reporting, and a role-based Streamlit dashboard now used internally.">
+<meta property="og:image" content="https://miguel-jay-faustino.vercel.app/og.png">
+<meta property="article:published_time" content="2026-11-06">
+<meta property="article:author" content="Miguel Jay Faustino">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From 46 workbooks to one dashboard">
+<meta name="twitter:description" content="Field-collected school data, a pandas consolidation pipeline with data-quality reporting, and a role-based Streamlit dashboard now used internally.">
+<meta name="twitter:image" content="https://miguel-jay-faustino.vercel.app/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232445C2'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMF%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "From 46 workbooks to one dashboard",
+ "description": "How I collected, consolidated and served a school division's personnel, equipment and internet data with Python, pandas and Streamlit.",
+ "datePublished": "2026-11-06",
+ "dateModified": "2026-11-06",
+ "url": "https://miguel-jay-faustino.vercel.app/blog/school-division-dashboard",
+ "image": "https://miguel-jay-faustino.vercel.app/og.png",
+ "author": {"@type": "Person", "@id": "https://miguel-jay-faustino.vercel.app/#person", "name": "Miguel Jay Faustino", "url": "https://miguel-jay-faustino.vercel.app/"},
+ "keywords": ["data engineering", "data pipeline", "pandas", "Streamlit", "data quality", "Excel consolidation", "role-based access"]
+}
+</script>
+<script>
+  /* Vercel Web Analytics: cookieless visit counts; runs only on the Vercel deployment */
+  if (/\.vercel\.app$/.test(location.hostname)) {
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    var va = document.createElement('script'); va.defer = true; va.src = '/_vercel/insights/script.js';
+    document.head.appendChild(va);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as the portfolio home page */
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#13203A; --muted:#55627B; --line:#DCE2EB;
+  --accent:#2445C2; --accent-ink:#FFFFFF; --accent-soft:#E7ECFB;
+  --ok:#1D7550; --ok-soft:#E0F1E8; --bad:#B3382C; --warn:#985A0C; --warn-soft:#F6EBD8;
+  --display:'Schibsted Grotesk','Helvetica Neue',Arial,sans-serif;
+  --body:'IBM Plex Sans','Segoe UI',Roboto,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px;
+  --r-sm:6px; --r-md:10px; --r-lg:14px;
+  --measure:68ch;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C111A; --surface:#141B27; --ink:#E5E9F1; --muted:#9BA6BB; --line:#253042;
+  --accent:#8FA7FF; --accent-ink:#0C111A; --accent-soft:#1B2548;
+  --ok:#72D3A6; --ok-soft:#12302A; --bad:#F08A7E; --warn:#E8B56C; --warn-soft:#33250F;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C111A; --surface:#141B27; --ink:#E5E9F1; --muted:#9BA6BB; --line:#253042;
+  --accent:#8FA7FF; --accent-ink:#0C111A; --accent-soft:#1B2548;
+  --ok:#72D3A6; --ok-soft:#12302A; --bad:#F08A7E; --warn:#E8B56C; --warn-soft:#33250F;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r-sm)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.015em}
+p,ul,ol,dl,dd,figure{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);padding-block:10px}
+.mark{font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.mark span{color:var(--accent)}
+.nav .back{font-size:14px;color:var(--muted);text-decoration:none}
+.nav .back:hover{color:var(--ink)}
+
+/* article */
+article{max-width:var(--measure);margin:0 auto;padding:var(--s-12) 0 var(--s-16)}
+.kicker{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:var(--s-3)}
+.kicker a{text-decoration:none}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.025em}
+.dek{font-size:clamp(18px,2.3vw,21px);line-height:1.5;color:var(--muted);margin-top:var(--s-4)}
+.byline{display:flex;flex-wrap:wrap;gap:var(--s-1) var(--s-4);font-size:14px;color:var(--muted);margin-top:var(--s-5);padding-bottom:var(--s-6);border-bottom:1px solid var(--line)}
+
+.glance{margin-top:var(--s-8);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5) var(--s-6);display:grid;grid-template-columns:max-content minmax(0,1fr);gap:var(--s-3) var(--s-6)}
+.glance dt{font-weight:600;font-size:15px}
+.glance dd{font-size:15px;color:var(--muted)}
+@media (max-width:560px){.glance{grid-template-columns:minmax(0,1fr);gap:2px}.glance dd{margin-bottom:var(--s-3)}}
+
+.toc{margin-top:var(--s-8);font-size:15px}
+.toc h2{font-family:var(--body);font-size:15px;font-weight:600;margin-bottom:var(--s-2)}
+.toc ol{padding-left:var(--s-5);columns:2;column-gap:var(--s-8)}
+@media (max-width:560px){.toc ol{columns:1}}
+.toc li{margin-bottom:2px;break-inside:avoid}
+
+article h2{font-size:clamp(25px,3.4vw,31px);font-weight:700;line-height:1.2;margin:var(--s-16) 0 var(--s-4)}
+article h3{font-size:20px;font-weight:700;line-height:1.3;margin:var(--s-8) 0 var(--s-3)}
+article p + p,article p + ul,article ul + p,article p + ol,article ol + p{margin-top:var(--s-4)}
+article ul,article ol{padding-left:var(--s-6)}
+article li + li{margin-top:var(--s-2)}
+article strong{font-weight:600}
+code{white-space:nowrap;font-family:var(--mono);font-size:.88em;background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:4px}
+pre{margin:var(--s-5) 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s-4) var(--s-5);overflow-x:auto;font-size:14px;line-height:1.6}
+pre code{background:none;padding:0;font-size:inherit;white-space:pre}
+pre .c{color:var(--muted)}
+.snip-note{font-size:13px;color:var(--muted);margin-top:calc(-1 * var(--s-3))!important}
+
+/* pipeline diagram: four stages, columns on wide screens, stacked on phones */
+.wide{width:min(1000px,calc(100vw - 32px));position:relative;left:50%;transform:translateX(-50%);margin:var(--s-8) 0}
+.pipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-6)}
+.stage{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-4) var(--s-5) var(--s-5)}
+.stage + .stage::before{content:"";position:absolute;left:calc(-1 * var(--s-6));top:50%;width:var(--s-6);height:2px;background:var(--accent)}
+.stage + .stage::after{content:"";position:absolute;left:-9px;top:calc(50% - 5px);border:6px solid transparent;border-left-color:var(--accent)}
+.stage .layer{font-size:13px;font-weight:600;color:var(--accent)}
+.stage h3{font-size:18px;margin:2px 0 var(--s-3)}
+.stage ul{list-style:none;padding:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.stage li + li{margin-top:6px}
+.stage .out{margin-top:var(--s-3);padding-top:var(--s-3);border-top:1px dashed var(--line);font-size:13px;line-height:1.5}
+.stage .out code{font-size:12px}
+.stage.check{border-color:var(--ok)}
+.stage.check .layer{color:var(--ok)}
+.caption{font-size:14px;color:var(--muted);margin-top:var(--s-3);text-align:center}
+@media (max-width:860px){
+  .pipe{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
+  .stage + .stage::before{left:50%;top:calc(-1 * var(--s-6));width:2px;height:var(--s-6)}
+  .stage + .stage::after{left:calc(50% - 5px);top:-9px;border-left-color:transparent;border-top-color:var(--accent)}
+}
+
+/* tables */
+.table-wrap{overflow-x:auto;margin:var(--s-5) 0}
+table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}
+th{text-align:left;font-weight:600;font-size:14px;padding:var(--s-2) var(--s-4) var(--s-2) 0;border-bottom:2px solid var(--ink);white-space:nowrap}
+td{padding:var(--s-3) var(--s-4) var(--s-3) 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:600;white-space:nowrap}
+td.m{color:var(--muted)}
+
+/* callouts */
+.callout{margin:var(--s-6) 0;padding:var(--s-4) var(--s-5);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-sm);background:var(--surface);font-size:16px}
+.callout.ok{border-left-color:var(--ok)}
+.callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.callout b{font-weight:600}
+.callout.warn b{color:var(--warn)}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);margin:var(--s-6) 0}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s-3) var(--s-4)}
+.stat b{display:block;font-family:var(--display);font-size:26px;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);line-height:1.4;display:block}
+
+.end{margin-top:var(--s-16);padding-top:var(--s-6);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-3);font-size:15px}
+footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer .wrap{padding-block:var(--s-5) var(--s-10);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2)}
+@media print{.nav,.toc{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="mark" href="/">Miguel<span>.</span>Faustino</a>
+    <a class="back" href="/#work">Back to portfolio</a>
+  </div>
+</nav>
+
+<main class="wrap">
+<article>
+  <p class="kicker"><a href="/#work">Build story</a></p>
+  <h1>From 46 workbooks to one dashboard</h1>
+  <p class="dek">How I collected, consolidated and served a school division's personnel, equipment and internet data with Python, pandas and Streamlit, and what broke along the way.</p>
+  <p class="byline"><span>Miguel Jay Faustino</span><span><time datetime="2026-11-06">6 November 2026</time></span><span>9 min read</span></p>
+
+  <dl class="glance" aria-label="Project at a glance">
+    <dt>What</dt><dd>A role-based dashboard over a school division's personnel, equipment, DCP computer and internet records</dd>
+    <dt>Sources</dt><dd>46 Excel workbooks (45 schools and the division office), collected and encoded in the field</dd>
+    <dt>Pipeline</dt><dd>Python consolidation scripts (pandas, openpyxl) that clean, deduplicate and report data quality issues</dd>
+    <dt>Serving</dt><dd>Streamlit and Plotly, four modules, access by role</dd>
+    <dt>Status</dt><dd>Deployed internally since April 2026, used by the HR, Supply and ICT offices</dd>
+  </dl>
+
+  <nav class="toc" aria-labelledby="toc-h">
+    <h2 id="toc-h">In this post</h2>
+    <ol>
+      <li><a href="#problem">The problem</a></li>
+      <li><a href="#gathering">Gathering the data in the field</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#ingestion">Ingestion</a></li>
+      <li><a href="#quality">Cleaning and data quality</a></li>
+      <li><a href="#isp">Internet connectivity data</a></li>
+      <li><a href="#serving">The serving layer</a></li>
+      <li><a href="#access">Access by role</a></li>
+      <li><a href="#broke">What broke</a></li>
+      <li><a href="#results">Results and what's next</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="problem">The problem</h2>
+  <p>The division office needed answers to simple questions. How many teaching and non-teaching staff do we have, and in which schools? Which equipment is unserviceable or due for disposal? Of the computers delivered under the DepEd Computerization Program (DCP), how many still work? Which schools pay for internet, and are they getting the speed they pay for?</p>
+  <p>The answers existed, but they were scattered across each school's records, paper forms and people's memory. There was no single dataset anyone could query.</p>
+
+  <h2 id="gathering">Gathering the data in the field</h2>
+  <p>We collected it in person. Our team visited the schools and encoded each one's data into the division's standard workbook: one file per school, with sheets for personnel, equipment and internet connectivity. Where records were incomplete, the school's HR staff shared internal documents and employees' Personal Data Sheets, the government's standard employee profile form, so we could fill the gaps.</p>
+  <p>By the end there were 46 workbooks: one per school, plus one for the division office itself.</p>
+  <p>Field collection gets data that exists nowhere else, but it has a predictable side effect: many hands, many habits. The same position was typed as <code>TEACHER I</code>, <code>Teacher I</code> and <code>T I</code>. Phone numbers came with spaces, dashes or neither. Excel quietly added apostrophes in front of numeric IDs. Some people were encoded twice. I designed the pipeline around that reality instead of hoping the files would arrive clean.</p>
+
+  <h2 id="architecture">Architecture</h2>
+  <p>The system has four stages. Data only moves forward, and the original school workbooks are never modified.</p>
+
+  <figure class="wide" aria-labelledby="pipe-cap">
+    <div class="pipe">
+      <section class="stage" aria-label="Stage 1: collect">
+        <p class="layer">Raw</p>
+        <h3>Collect</h3>
+        <ul>
+          <li>School visits by the division team</li>
+          <li>Encoded into the standard template</li>
+          <li>School HR records and Personal Data Sheets fill the gaps</li>
+        </ul>
+        <p class="out">46 workbooks in one folder</p>
+      </section>
+      <section class="stage check" aria-label="Stage 2: consolidate">
+        <p class="layer">Cleaned</p>
+        <h3>Consolidate</h3>
+        <ul>
+          <li>One Python script per domain reads every workbook</li>
+          <li>Normalize, deduplicate, type-convert</li>
+          <li>Unresolved problems go to a Data Issues sheet</li>
+        </ul>
+        <p class="out"><code>Consolidated_Personnel.xlsx</code><br><code>Merged_Equipment.xlsx</code><br><code>Merged_ISP.xlsx</code></p>
+      </section>
+      <section class="stage" aria-label="Stage 3: serve">
+        <p class="layer">Served</p>
+        <h3>Dashboard</h3>
+        <ul>
+          <li>Streamlit app with cached loading</li>
+          <li>Derived fields: staff type, DCP flag, hire month</li>
+          <li>Each role gets only its modules</li>
+        </ul>
+        <p class="out">4 modules: Personnel, Equipment, DCP ICT, ISP</p>
+      </section>
+      <section class="stage" aria-label="Stage 4: use">
+        <p class="layer">Used</p>
+        <h3>Offices</h3>
+        <ul>
+          <li>HR: personnel</li>
+          <li>Supply: equipment and DCP</li>
+          <li>ICT and administrator: everything</li>
+        </ul>
+        <p class="out">Filters per school, CSV export of flagged items</p>
+      </section>
+    </div>
+    <figcaption class="caption" id="pipe-cap">Raw, cleaned, served: a small version of the bronze, silver and gold layers data teams use, built from files an office can open.</figcaption>
+  </figure>
+
+  <p>Keeping the middle layer in Excel was deliberate. The offices already lived in spreadsheets, so anyone could open the consolidated files, filter them and check the numbers without the dashboard. That made it easy to trust what the dashboard showed, because every figure could be checked by hand.</p>
+
+  <h2 id="ingestion">Ingestion: 46 files that look alike but aren't</h2>
+  <p>Every school used the same template, which helps, but templates drift once people fill them in. The ingestion script follows four rules:</p>
+  <ul>
+    <li><strong>Scan, don't list.</strong> It reads every <code>.xlsx</code> file in the source folder. Adding a school means dropping its file in and running the script again, with no code change.</li>
+    <li><strong>Name from the file.</strong> The school name comes from the file name (<code>Sample_Elementary_School.xlsx</code> becomes "Sample Elementary School"), so every row has exactly one, consistent school label.</li>
+    <li><strong>Read by position.</strong> The template has a two-row header, so data starts on the third row and columns are mapped by position, not by header text that people sometimes edit.</li>
+    <li><strong>Rebuild from scratch.</strong> Each run regenerates the output completely. The same inputs always give the same output, so re-running never double-counts anyone.</li>
+  </ul>
+<pre><code><span class="c"># Simplified: the shape of the personnel ingestion loop</span>
+from pathlib import Path
+import pandas as pd
+
+records = []
+for path in sorted(Path(SOURCE_DIR).glob("*.xlsx")):
+    school = path.stem.replace("_", " ")
+    sheet = pd.read_excel(path, sheet_name="Personnel", header=None).iloc[2:]
+    for row_no, row in enumerate(sheet.itertuples(index=False), start=3):
+        emp_id = clean_id(row[1])
+        if not emp_id or emp_id == "9999":   <span class="c"># template separator rows</span>
+            continue
+        records.append({"School": school, "Employee_ID": emp_id,
+                        "Position": row[9], "Source_Row": row_no})</code></pre>
+  <p class="snip-note">Snippets in this post are simplified illustrations, not the production code.</p>
+
+  <h2 id="quality">Cleaning and data quality</h2>
+  <p>Hand-encoded data fails in predictable ways, so each problem got an explicit rule:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Field</th><th scope="col">What we saw</th><th scope="col">Rule</th></tr></thead>
+      <tbody>
+        <tr><td>Position</td><td class="m"><code>TEACHER I</code>, <code>Teacher I</code>, <code>T I</code>, <code>HT III</code>, <code>MT I</code>, typos</td><td>A lookup table maps every variant to one official title, such as Teacher I, Head Teacher III or Master Teacher I</td></tr>
+        <tr><td>Names</td><td class="m">Some in all caps</td><td>Title case</td></tr>
+        <tr><td>Mobile number</td><td class="m">Spaces, dashes, local and international formats</td><td>Digits only, one international format (+63)</td></tr>
+        <tr><td>Employee ID</td><td class="m">A leading apostrophe from Excel text cells</td><td>Stripped, so IDs match across files</td></tr>
+        <tr><td>Email</td><td class="m">Mixed case, stray spaces</td><td>Lowercased and trimmed</td></tr>
+        <tr><td>Date hired</td><td class="m">Mixed date formats</td><td>Parsed and written in one format</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The most important rule is what happens to values the script doesn't recognize: it never guesses. An unmapped position goes to a <strong>Data Issues</strong> sheet in the output workbook, a person decides what it should be, adds it to the lookup table, and the next run fixes it everywhere. The Data Issues sheet has three sections: duplicate IDs, unmapped positions and other warnings.</p>
+
+  <h3>The headcount that didn't add up</h3>
+  <p>For the division office's own workbook, the script reported 143 people, and a manual count disagreed. Instead of adjusting the number, I traced it row by row.</p>
+  <p>Twenty-two employee IDs appeared twice in the same sheet: the same person, encoded in two places. The real headcount was <strong>121</strong>. The template's <code>9999</code> separator rows had also been inflating manual counts, which is why the script skips them.</p>
+  <p>The fix was a rule rather than a one-off correction: keep the first occurrence of each employee ID, skip later copies, and list every duplicate with both row numbers so the office can correct the source file.</p>
+<pre><code><span class="c"># Simplified: duplicates are reported, never silently dropped</span>
+first_seen, clean, issues = {}, [], []
+for rec in records:
+    first = first_seen.setdefault((rec["School"], rec["Employee_ID"]), rec["Source_Row"])
+    if first != rec["Source_Row"]:
+        issues.append(("Duplicate ID", rec["School"], rec["Employee_ID"],
+                       f"rows {first} and {rec['Source_Row']}"))
+        continue
+    clean.append(rec)</code></pre>
+  <div class="callout ok"><b>The principle:</b> every number on the dashboard can be traced back to a row in a source file, and every row the pipeline didn't use is listed with the reason.</div>
+
+  <h2 id="isp">Internet connectivity data</h2>
+  <p>The internet data had more moving parts. Each school workbook records its connectivity, its ISP accounts, speed test results and subscription costs on separate sheets. A second script follows the same pattern and writes <code>Merged_ISP.xlsx</code> with five sheets: ISP accounts, speed test results, subscription cost, a connectivity summary and a per-school summary.</p>
+  <p>Speeds and costs arrive as text about as often as numbers, so every numeric column goes through <code>pd.to_numeric(errors="coerce")</code>. A cell like <code>"20 Mbps"</code> or <code>"N/A"</code> becomes empty instead of crashing the run or quietly turning into zero, and empty values are counted, not hidden.</p>
+
+  <h2 id="serving">The serving layer</h2>
+  <p>The dashboard is a Streamlit app that reads the three consolidated workbooks. Loading goes through <code>@st.cache_data</code>, so the files are read once and every filter afterwards is instant.</p>
+  <p>Some of the most useful fields don't exist in the source data, so the app derives them on load:</p>
+  <ul>
+    <li><strong>Staff type.</strong> The source has no teaching or non-teaching column, so a position containing Teacher, Principal or Head counts as teaching staff, and everything else as non-teaching.</li>
+    <li><strong>DCP equipment.</strong> An item counts as DCP ICT equipment when it has a DCP package value and isn't marked as non-DCP. Writing that definition down took a conversation with the people who manage the inventory, not just code.</li>
+    <li><strong>Hire month.</strong> Hire dates are parsed tolerantly and grouped by month for the hiring timeline. Unparseable dates are excluded from the chart and still counted in the totals.</li>
+  </ul>
+<pre><code><span class="c"># Simplified: the DCP rule, as a single boolean column</span>
+package = equipment["DCP Package"].fillna("").str.strip()
+equipment["Is DCP"] = equipment["Non-DCP"].isna() &amp; ~package.isin(["", "-"])</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Module</th><th scope="col">What it answers</th></tr></thead>
+      <tbody>
+        <tr><td>Personnel</td><td>Total, teaching and non-teaching staff; position mix; hiring over time; search by name or ID</td></tr>
+        <tr><td>Equipment</td><td>Condition and disposition; acquisition cost per school; a flagged-items list (unserviceable, for repair, for disposal) with CSV export</td></tr>
+        <tr><td>DCP ICT</td><td>Serviceability as counts and percentages; breakdown by package and year received; serviceability rate per school</td></tr>
+        <tr><td>ISP</td><td>Providers, connection and subscription types; signal quality and speed tests; monthly cost and spend per school</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Every module opens on an all-schools overview and can be switched to a single school.</p>
+
+  <h2 id="access">Access by role</h2>
+  <p>The dashboard started as two separate prototypes: the four-module analysis app, and a landing page with sign-in. I merged them into one app with a three-step flow (landing, sign-in, dashboard) held in Streamlit's session state.</p>
+  <p>Access is a map from role to modules. HR sees Personnel. Supply sees Equipment and DCP ICT. ICT staff and the administrator see everything. After sign-in, the app builds only the tabs a role may open and loads only the files those tabs need. The HR view never reads the equipment file at all. That's least privilege applied to data loading, and it keeps memory use down as a bonus.</p>
+  <div class="callout warn"><b>Disclaimer:</b> sign-in is a simple in-app check suited to an internal deployment, not production-grade authentication. Replacing it with proper identity management is first on the list below.</div>
+
+  <h2 id="broke">What broke</h2>
+  <h3>"It works on my machine"</h3>
+  <p>The first version pointed at a hard-coded Windows folder. On another computer it failed immediately with a file-not-found error. The fix was to keep the data files next to the app and use relative paths. The lesson was bigger than the fix: where the data lives is configuration, not code.</p>
+  <h3>Charts that were confidently wrong</h3>
+  <p>Two pie charts in the ISP module showed 100% "No": no school had an ISP subscription, and none had enough bandwidth. Nothing errored. The chart counted "Yes" values in columns whose names or values didn't match what the consolidation script actually wrote.</p>
+  <p>This was the most useful bug of the project. Between any two stages of a pipeline there's an unwritten contract: these column names, these types, these allowed values. When one side changes, nothing crashes; the dashboard just quietly lies. The diagnosis was to print the actual columns and values on load and compare them with what the chart expected. The lasting fix is to check that contract on every load and fail loudly when it breaks.</p>
+
+  <h2 id="results">Results and what's next</h2>
+  <div class="stats">
+    <div class="stat"><b>46</b><span>field-collected workbooks consolidated</span></div>
+    <div class="stat"><b>3</b><span>curated datasets with data-quality reports</span></div>
+    <div class="stat"><b>4</b><span>dashboard modules, gated by role</span></div>
+    <div class="stat"><b>3</b><span>offices using it: HR, Supply, ICT</span></div>
+  </div>
+  <p>The dashboard is deployed internally and used by the HR, Supply and ICT offices. Adding a school means dropping in one file and running the scripts again. Data problems are surfaced in the output instead of disappearing into a total.</p>
+  <p>If I rebuilt it today, these are the changes I'd make, in order:</p>
+  <ol>
+    <li><strong>Validate at entry.</strong> Replace free-typed fields with dropdowns or a form, so <code>T I</code> can't be entered in the first place. Cleaning after the fact is the expensive place to fix data.</li>
+    <li><strong>A database in the middle.</strong> SQLite or PostgreSQL tables with an employee ID key would make duplicates impossible instead of reported.</li>
+    <li><strong>Schema checks between stages.</strong> Assert column names, types and allowed values on load, so the "100% No" bug becomes an error message.</li>
+    <li><strong>Real authentication.</strong> Hashed credentials or single sign-on, with roles managed outside the code.</li>
+    <li><strong>Scheduled refresh.</strong> Run the consolidation on a schedule instead of by hand.</li>
+    <li><strong>A public demo.</strong> The same app on synthetic data, so anyone can try it without seeing internal records.</li>
+  </ol>
+
+  <h3>How I worked</h3>
+  <p>I built this with an AI coding assistant as a pair programmer. My part was the part a tool can't do on its own: collecting the data in the field, defining the business rules (what counts as teaching staff, what counts as DCP equipment, what to do with a duplicate), deciding how bad data should be treated, and checking every output against the source files until the numbers reconciled.</p>
+
+  <div class="callout warn"><b>Disclaimer:</b> the office isn't named, and no personal or internal records appear in this post. Figures describe the project's scope, not the data itself. Code snippets are simplified illustrations of the approach, not the production code.</div>
+
+  <div class="end">
+    <a href="/#work">Back to the portfolio</a>
+    <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=migueljayfaustino@gmail.com&amp;su=About%20your%20school%20division%20dashboard%20post" target="_blank" rel="noopener">Questions about this build? Email me</a>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Miguel Jay Faustino · 2026</span>
+    <span>Published 6 November 2026</span>
+  </div>
+</footer>
+</body>
+</html>
