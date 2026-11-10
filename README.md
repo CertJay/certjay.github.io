@@ -9,6 +9,9 @@ Live site: https://miguel-jay-faustino.vercel.app (also mirrored at https://cert
 | File | What it is |
 |---|---|
 | `index.html` | The whole site: one self-contained page (HTML, CSS, a few lines of JavaScript). No build step. |
+| `assets/site.js` | The interactive layer: live pipeline animation, data-cleaning demo, tech explorer, theme toggle. The page still reads fine without it. |
+| `blog/` | Build stories, one folder per post. |
+| `googlee3c8e2e4ca80c40c.html` | Google Search Console verification. Do not delete. |
 | `resume/Miguel-Jay-Faustino-Resume.pdf` | The one-page resume linked from the site. |
 | `resume/resume.html` | Source for the PDF. Edit this, then regenerate the PDF. |
 | `og.png` | The preview image shown when the link is shared on LinkedIn, Messenger, etc. |
