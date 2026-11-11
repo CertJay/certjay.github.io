@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Source for resume/Miguel-Jay-Faustino-Resume.pdf. Edit here, then regenerate the PDF (see README). */
-@page{size:A4;margin:10mm 13mm}
+@page{size:A4;margin:9mm 13mm}
 *{box-sizing:border-box}
-body{margin:0;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:9.2pt;line-height:1.3;color:#13203A}
+body{margin:0;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:9.2pt;line-height:1.27;color:#13203A}
 a{color:#2445C2;text-decoration:none}
 h1{font-size:21pt;margin:0;letter-spacing:-.01em}
 .title{font-size:11pt;font-weight:600;color:#2445C2;margin-top:1pt}
 .contact{margin-top:4pt;color:#55627B;font-size:9pt}
 .contact span + span::before{content:"·";margin:0 5pt;color:#9BA6BB}
-h2{font-size:9pt;letter-spacing:.12em;text-transform:uppercase;color:#2445C2;margin:8pt 0 3pt;padding-bottom:2pt;border-bottom:1px solid #DCE2EB}
+h2{font-size:9pt;letter-spacing:.12em;text-transform:uppercase;color:#2445C2;margin:7pt 0 3pt;padding-bottom:2pt;border-bottom:1px solid #DCE2EB}
 p{margin:0}
 .row{display:flex;justify-content:space-between;gap:10pt;align-items:baseline}
 .role{font-weight:600}
@@ -23,7 +23,7 @@ p{margin:0}
 .when{color:#55627B;white-space:nowrap;font-size:9pt}
 ul{margin:2pt 0 0;padding-left:12pt}
 li{margin-bottom:1pt}
-.item + .item{margin-top:4.5pt}
+.item + .item{margin-top:4pt}
 .skills{display:grid;grid-template-columns:105pt 1fr;gap:2pt 8pt}
 .skills b{font-weight:600}
 .certs{columns:3;column-gap:14pt}
@@ -42,7 +42,7 @@ li{margin-bottom:1pt}
   </p>
 
   <h2>Summary</h2>
-  <p>Business Analyst (BS Information Systems, Data Science) with a track record of cleaning, validating and consolidating operational data in government and enterprise settings. Shipped an assessment-data platform and a role-based dashboard for a schools division, and runs requirements and test design on a 20-application enterprise rollout.</p>
+  <p>Business Analyst (BS Information Systems, Data Science) who cleans, validates and consolidates operational data in government and enterprise settings. Shipped an assessment-data platform and a role-based dashboard for a schools division.</p>
 
   <h2>Experience</h2>
   <div class="item">
@@ -51,7 +51,7 @@ li{margin-bottom:1pt}
       <li>Run requirements discovery and gap analysis for an enterprise hospitality software implementation spanning about 20 integrated applications.</li>
       <li>Traced 120+ gaps between the business baseline and workshop findings into a severity-ranked register with source traceability.</li>
       <li>Wrote point-of-sale and property-management test-case workbooks (110+ cases), UAT plans, RAID logs and integration inventories.</li>
-      <li>Consolidated a 12-session discovery workshop series with client IT, operations and vendor teams into a single source-of-truth knowledge base and 100+ term glossary.</li>
+      <li>Consolidated a 12-session discovery series with client IT, operations and vendors into one knowledge base and 100+ term glossary.</li>
     </ul>
   </div>
   <div class="item">
@@ -69,18 +69,24 @@ li{margin-bottom:1pt}
   <div class="item">
     <div class="row"><p><span class="role">IT Intern</span> <span class="org">· Department of Education, Dasmariñas</span></p><p class="when">Feb 2025 – May 2025</p></div>
     <ul>
+      <li>Developed a Personal Data Sheet system (CS Form No. 212, Revised 2025) that generates the official PDF from database entries, with lookup, download and role-based access from IT admins and school AO IIs to teachers, principals and EPS.</li>
       <li>Configured LAMP and LEMP stacks on Ubuntu; built network racks and set up routers for multi-ISP failover.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><p><span class="role">Researcher</span> <span class="org">· independent quantitative research support</span></p><p class="when">2019 – Present</p></div>
+    <ul>
+      <li>Helped 150+ student researchers from universities and colleges across the Philippines with quantitative studies, theses and dissertations.</li>
     </ul>
   </div>
 
   <h2>Projects</h2>
   <div class="item">
-    <div class="row"><p><span class="role">e-QUAART</span> <span class="org">· assessment results management and analytics · <a href="https://github.com/CertJay/e-QUAART">github.com/CertJay/e-QUAART</a></span></p><p class="when">Shipped</p></div>
+    <div class="row"><p><span class="role">e-QUAART</span> <span class="org">· assessment results management and analytics · <a href="https://github.com/CertJay/e-QUAART-showcase">story and docs on GitHub</a></span></p><p class="when">Shipped</p></div>
     <ul>
-      <li>Captures results via grid entry and CSV/Excel import, validates each record against a schema, and routes it through a submit-verify-return queue before analytics.</li>
-      <li>Classifies results by configurable performance levels and finds learning gaps by learner, class, school and division; tracks interventions through reassessment.</li>
-      <li>Idempotent year-end rollover; SQLite build for single schools and a PostgreSQL branch for division-wide use; role-scoped access for 10 user types with audit trail.</li>
-      <li>TypeScript, Express, Prisma, React, Vitest, Docker Compose, GitHub Actions CI. Demo data: ~79,000 results, ~2,600 learners, 9 schools.</li>
+      <li>Captures results via grid entry and CSV/Excel import, validates each record against a schema and routes it through a verify queue before analytics.</li>
+      <li>Classifies results by configurable performance levels, finds learning gaps from learner to division level, and tracks interventions through reassessment.</li>
+      <li>Idempotent year-end rollover; SQLite build for single schools and a PostgreSQL branch for division-wide use; role-scoped access for 10 user types with audit trail. TypeScript, Express, Prisma, React, Vitest, Docker, GitHub Actions.</li>
     </ul>
   </div>
   <div class="item">
@@ -95,14 +101,15 @@ li{margin-bottom:1pt}
     <b>Data</b><span>SQL, MySQL, PostgreSQL, SQLite, data cleaning and validation, data modeling, Advanced Excel, Google Sheets, Power BI, RapidMiner</span>
     <b>Engineering</b><span>Python (pandas, Streamlit, Plotly), TypeScript, Prisma, Git and GitHub, GitHub Actions, Docker Compose</span>
     <b>Infrastructure</b><span>Linux (Ubuntu), LAMP/LEMP, networking, multi-ISP redundancy</span>
-    <b>Analysis</b><span>Requirements and gap analysis, data mapping, UAT and test design, Agile, SDLC</span>
+    <b>Analysis</b><span>Requirements and gap analysis, data mapping, UAT and test design, statistics and quantitative research, Agile, SDLC</span>
   </div>
 
   <h2>Education</h2>
   <div class="row"><p><span class="role">BS Information Systems, major in Data Science</span> <span class="org">· Kolehiyo ng Lungsod ng Dasmariñas</span></p><p class="when">2021 – 2025</p></div>
   <p class="org">Dean's Lister all four years · Class President · Mentor Committee Head</p>
+  <p class="org">Awards: Hackathon 1st place (3rd year) and 4th place (2nd year) · SQL Mystery 2nd place (4th year)</p>
 
   <h2>Certifications</h2>
-  <p>DataCamp: SQL Associate, Python Data Associate (2025) · Cisco: Data Analytics Essentials, Introduction to Data Science (2026) · DataSense: Data Analytics with Power BI, Statistics with Microsoft Excel (2025). Verification links at miguel-jay-faustino.vercel.app.</p>
+  <p>DataCamp: SQL Associate, Python Data Associate (2025) · Cisco: Data Analytics Essentials, Introduction to Data Science (2026) · DataSense: Data Analytics with Power BI, Statistics with Microsoft Excel (2025).</p>
 </body>
 </html>

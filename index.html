@@ -30,7 +30,7 @@
  "@type": "ProfilePage",
  "url": "https://miguel-jay-faustino.vercel.app/",
  "name": "Miguel Jay Faustino | Business Analyst and Data Systems Builder",
- "dateModified": "2026-11-10",
+ "dateModified": "2026-11-11",
  "mainEntity": {
   "@type": "Person",
   "@id": "https://miguel-jay-faustino.vercel.app/#person",
@@ -66,7 +66,14 @@
    "Business analysis",
    "Streamlit",
    "RapidMiner",
-   "TypeScript"
+   "TypeScript",
+   "Statistics",
+   "Quantitative research"
+  ],
+  "award": [
+   "1st place, Hackathon (3rd year, Kolehiyo ng Lungsod ng Dasmariñas)",
+   "2nd place, SQL Mystery (4th year, Kolehiyo ng Lungsod ng Dasmariñas)",
+   "4th place, Hackathon (2nd year, Kolehiyo ng Lungsod ng Dasmariñas)"
   ],
   "sameAs": [
    "https://www.linkedin.com/in/miguel-jay-faustino-5b6762308/",
@@ -113,13 +120,11 @@
  },
  "hasPart": [
   {
-   "@type": "SoftwareSourceCode",
+   "@type": "SoftwareApplication",
    "name": "e-QUAART",
+   "applicationCategory": "BusinessApplication",
    "description": "Assessment results management, analytics and intervention tracking for a schools division.",
-   "codeRepository": "https://github.com/CertJay/e-QUAART",
-   "programmingLanguage": [
-    "TypeScript"
-   ],
+   "url": "https://github.com/CertJay/e-QUAART-showcase",
    "author": {
     "@id": "https://miguel-jay-faustino.vercel.app/#person"
    }
@@ -245,9 +250,6 @@ section{padding-block:var(--s-16);border-top:var(--bw) solid var(--line)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:var(--s-10);align-items:start}
 @media (max-width:940px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-8)}}
 .status{display:inline-flex;align-items:center;gap:var(--s-2);font-size:var(--t-sm);font-weight:500;color:var(--ok);background:var(--ok-soft);padding:5px 12px;border-radius:var(--r-pill);margin-bottom:var(--s-5)}
-.status .dot{animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.status .dot{animation:none}}
 .hero h1{font-size:var(--t-2xl);font-weight:800;line-height:1.02}
 .headline{font-family:var(--display);font-size:clamp(20px,2.8vw,26px);font-weight:700;margin-top:var(--s-3);color:var(--muted)}
 .headline b{color:var(--ink)}
@@ -358,6 +360,10 @@ section{padding-block:var(--s-16);border-top:var(--bw) solid var(--line)}
 .job li{margin-bottom:var(--s-1);font-size:15px}
 .edu{margin-top:var(--s-8);padding:var(--s-5) var(--s-6);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2) var(--s-6)}
 .edu .muted{font-size:var(--t-sm);margin-top:var(--s-1)}
+.awards{list-style:none;padding:var(--s-3) 0 0;margin:0;flex-basis:100%;display:flex;flex-wrap:wrap;gap:var(--s-2);border-top:var(--bw) dashed var(--line)}
+.awards li{font-size:var(--t-sm);padding:5px 12px;border-radius:var(--r-pill);background:var(--accent-soft);color:var(--ink)}
+.awards b{color:var(--accent);font-weight:600}
+.awards span{color:var(--muted);margin-left:4px}
 
 /* ===== About / path ===== */
 .about-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--s-10)}
@@ -410,27 +416,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(-
 .facts dd{margin:0;font-size:15px;line-height:1.45}
 @media (max-width:480px){.facts{grid-template-columns:minmax(0,1fr)}}
 
-/* Live pipeline */
-.pipe-card{padding:var(--s-4) var(--s-5) var(--s-5);min-width:0}
-.pipe-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);margin-bottom:var(--s-1)}
-.pipe-title{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:var(--s-2)}
-.pipe-title .dot{color:var(--ok);animation:pulse 2.4s ease-in-out infinite}
-@media (prefers-reduced-motion:reduce){.pipe-title .dot{animation:none}}
-#pipe{display:block;width:100%;height:236px;touch-action:pan-y;border-radius:var(--r-sm)}
-@media (max-width:520px){#pipe{height:214px}}
-.pipe-eq{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;font-size:14px;font-variant-numeric:tabular-nums;margin-top:var(--s-2);padding-top:var(--s-3);border-top:var(--bw) dashed var(--line)}
-.pipe-eq b{font-family:var(--display);font-size:19px;font-weight:800}
-.pipe-eq .ok b{color:var(--ok)}.pipe-eq .bad b{color:var(--bad)}.pipe-eq .dup b{color:var(--muted)}
-.pipe-eq i{font-style:normal;color:var(--muted)}
-.pipe-ctl{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--s-3);margin-top:var(--s-3);font-size:14px}
-.pipe-ctl input{width:100%;accent-color:var(--accent);margin:0}
-.pipe-ctl output{font-variant-numeric:tabular-nums;font-weight:600;min-width:4ch;text-align:right}
-.pipe-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:var(--s-3)}
-.pipe-stages button{font:500 13px var(--body);padding:7px 4px;border-radius:var(--r-sm);border:var(--bw) solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
-.pipe-stages button:hover{border-color:var(--accent);color:var(--ink)}
-.pipe-stages button[aria-pressed="true"]{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:600}
-.pipe-note{font-size:14px;line-height:1.5;color:var(--muted);margin-top:var(--s-3);min-height:4.5em}
-.pipe-note b{color:var(--ink);font-weight:600}
+/* Role lens: static evidence card, one panel per role */
+.lens{padding:var(--s-5) var(--s-6) var(--s-6);min-width:0}
+@media (max-width:520px){.lens{padding:var(--s-4) var(--s-4) var(--s-5)}}
+.lens-h{font-family:var(--display);font-weight:700;font-size:17px}
+.lens-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:var(--s-3)}
+.lens-tabs button{font:500 14px var(--body);padding:8px 10px;border-radius:var(--r-sm);border:var(--bw) solid var(--line);background:transparent;color:var(--muted);cursor:pointer;text-align:left}
+.lens-tabs button:hover{border-color:var(--accent);color:var(--ink)}
+.lens-tabs button[aria-selected="true"]{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:600}
+.lens-panel{margin-top:var(--s-5)}
+.lens-pitch{font-family:var(--display);font-size:19px;font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.lens-proof{list-style:none;padding:0;margin:var(--s-4) 0 0;display:grid;gap:var(--s-3)}
+.lens-proof li{font-size:15px;line-height:1.5;padding-left:var(--s-5);position:relative;color:var(--muted)}
+.lens-proof li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+.lens-proof a{text-decoration:none}
+.lens-proof a b{color:var(--ink);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+.lens-proof a:hover b{color:var(--accent)}
+.lens-tools{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:var(--s-5);padding-top:var(--s-3);border-top:var(--bw) dashed var(--line)}
 
 /* Try it: data-cleaning demo */
 .demo-card{overflow:hidden}
@@ -472,6 +474,32 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
 .recon .total.err{color:var(--bad)}
 .recon .why{grid-column:1/-1;color:var(--muted);font-size:14px}
 @media (max-width:620px){.recon{grid-template-columns:minmax(0,1fr)}}
+/* Analytics output under the sheet */
+.report{padding:var(--s-5);border-top:var(--bw) solid var(--line)}
+@media (max-width:620px){.report{padding:var(--s-4)}}
+.report-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-2) var(--s-3)}
+.report-t{font-family:var(--display);font-weight:700;font-size:17px}
+.r-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:620px){.r-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.r-kpis .kpi{background:var(--bg)}
+.r-kpis .kpi b{transition:color .25s}
+.r-kpis .kpi.err b{color:var(--bad)}
+.r-kpis .kpi small{display:block;font:12px var(--body);color:var(--bad);margin-top:2px}
+.r-charts{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:700px){.r-charts{grid-template-columns:minmax(0,1fr)}}
+.r-charts .panel{background:var(--bg)}
+.abars .r{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 2.5em;gap:var(--s-2);align-items:center;font-size:13px;margin-bottom:6px}
+.abars .r > span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.abars .r.raw > span{font-family:var(--mono);font-size:12px;color:var(--bad)}
+.abars .r small{font:12px var(--mono);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.abars .bar i{background:var(--accent);transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.abars .bar i.c-ok{background:var(--ok)}.abars .bar i.c-warn{background:var(--warn)}.abars .bar i.c-bad{background:var(--bad)}.abars .bar i.c-raw{background:var(--plan)}
+@media (prefers-reduced-motion:reduce){.abars .bar i{transition:none}}
+.finding{margin-top:var(--s-4);padding:var(--s-3) var(--s-4);border-radius:var(--r-sm);font-size:14.5px;line-height:1.55;border-left:3px solid var(--bad);background:var(--bad-soft)}
+.finding.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.finding b{font-weight:600}
+.finding ul{margin:var(--s-1) 0 0;padding-left:var(--s-5)}
+.finding li{margin-top:2px}
 
 /* Tech explorer */
 .tech{padding:var(--s-6)}
@@ -561,25 +589,51 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
           </dl>
         </div>
 
-        <aside class="card pipe-card" aria-label="Live pipeline">
-          <div class="pipe-head">
-            <p class="pipe-title"><span class="dot" aria-hidden="true"></span>How I move data, live</p>
-            <button class="btn btn-ghost btn-sm" id="pipe-toggle" type="button" aria-pressed="false">Pause</button>
+        <aside class="card lens" id="lens" aria-labelledby="lens-h">
+          <p class="lens-h" id="lens-h">Hiring for a data role? Start here.</p>
+          <div class="lens-tabs" role="tablist" aria-label="Choose the role you're hiring for">
+            <button type="button" role="tab" id="lt-de" aria-controls="lp-de" aria-selected="true" data-role="engineer">Data engineer</button>
+            <button type="button" role="tab" id="lt-ae" aria-controls="lp-ae" aria-selected="false" tabindex="-1" data-role="analytics-engineer">Analytics engineer</button>
+            <button type="button" role="tab" id="lt-da" aria-controls="lp-da" aria-selected="false" tabindex="-1" data-role="analyst">Data analyst</button>
+            <button type="button" role="tab" id="lt-ba" aria-controls="lp-ba" aria-selected="false" tabindex="-1" data-role="business-analyst">Business analyst</button>
           </div>
-          <canvas id="pipe" role="img" aria-label="Animation of a data pipeline: records flow from three sources through a validation gate, where bad rows drop into quarantine and duplicates are removed, then into a table and a bar chart."></canvas>
-          <p class="pipe-eq"><span><b id="c-in">0</b> rows in</span><i>=</i><span class="ok"><b id="c-ok">0</b> loaded</span><i>+</i><span class="bad"><b id="c-bad">0</b> quarantined</span><i>+</i><span class="dup"><b id="c-dup">0</b> duplicates</span></p>
-          <div class="pipe-ctl">
-            <label for="mess">Messy rows</label>
-            <input type="range" id="mess" min="0" max="60" step="1" value="15">
-            <output id="mess-out" for="mess">15%</output>
+
+          <div class="lens-panel" role="tabpanel" id="lp-de" aria-labelledby="lt-de">
+            <p class="lens-pitch">I build the path from messy source files to tables people trust.</p>
+            <ul class="lens-proof">
+              <li><a href="#case-h"><b>e-QUAART</b></a> validates every import against a schema, holds results in a verify queue, and rolls the school year over idempotently. It runs on SQLite or PostgreSQL.</li>
+              <li><a href="#dash-h"><b>Division dashboard</b></a> cleans four Excel sources on load and gives each role only its own files.</li>
+              <li><a href="#job-intern"><b>Personal Data Sheet system</b></a> turns form entries into database records and generated CS Form 212 PDFs.</li>
+            </ul>
+            <p class="lens-tools">Python · pandas · SQL · PostgreSQL · Prisma · Docker Compose · GitHub Actions</p>
           </div>
-          <div class="pipe-stages" role="group" aria-label="Pipeline stages">
-            <button type="button" aria-pressed="false">Collect</button>
-            <button type="button" aria-pressed="true">Validate</button>
-            <button type="button" aria-pressed="false">Model</button>
-            <button type="button" aria-pressed="false">Serve</button>
+          <div class="lens-panel" role="tabpanel" id="lp-ae" aria-labelledby="lt-ae" hidden>
+            <p class="lens-pitch">I turn business rules into tested definitions that mean the same thing on every chart.</p>
+            <ul class="lens-proof">
+              <li><a href="#case-h"><b>e-QUAART</b></a> keeps performance levels as configuration, defines each metric once, and runs tests on a seeded dataset in CI.</li>
+              <li><a href="#dash-h"><b>Division dashboard</b></a> encodes rules as derived fields, such as what counts as DCP ICT equipment.</li>
+              <li><a href="#demo-h"><b>Try it</b></a> shows rows reconciling, then a report that's only right once the rules run.</li>
+            </ul>
+            <p class="lens-tools">SQL · pandas · data modeling · Vitest · Git · documentation</p>
           </div>
-          <p class="pipe-note" id="pipe-note"><b>Validate.</b> Rules catch duplicates, blanks and text in number columns before anything loads. In one file they exposed 22 duplicate IDs.</p>
+          <div class="lens-panel" role="tabpanel" id="lp-da" aria-labelledby="lt-da" hidden>
+            <p class="lens-pitch">I clean the data first, then answer the question it was collected for.</p>
+            <ul class="lens-proof">
+              <li><a href="#job-research"><b>150+ student researchers</b></a> helped with quantitative theses and dissertations since 2019.</li>
+              <li><a href="#job-ict"><b>45 schools</b></a> of ICT and connectivity data audited for billing, provider and speed.</li>
+              <li><a href="#dash-h"><b>Division dashboard</b></a> shows KPIs, serviceability rates and spend per school.</li>
+            </ul>
+            <p class="lens-tools">Advanced Excel · SQL · Power BI · RapidMiner · Plotly · statistics</p>
+          </div>
+          <div class="lens-panel" role="tabpanel" id="lp-ba" aria-labelledby="lt-ba" hidden>
+            <p class="lens-pitch">I write the requirements and tests that say how data should move between systems.</p>
+            <ul class="lens-proof">
+              <li><a href="#job-ba"><b>120+ gaps</b></a> traced to their source and ranked by severity across about 20 applications.</li>
+              <li><a href="#job-ba"><b>110+ test cases</b></a> for point of sale and property management, plus UAT plans and RAID logs.</li>
+              <li><a href="#job-ba"><b>12 workshops</b></a> consolidated into one knowledge base with a 100+ term glossary.</li>
+            </ul>
+            <p class="lens-tools">Requirements and gap analysis · data mapping · UAT · stakeholder workshops</p>
+          </div>
         </aside>
       </div>
 
@@ -597,7 +651,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
         <div>
           <p class="eyebrow">Try it</p>
           <h2 id="demo-h">Clean a messy inventory sheet</h2>
-          <p class="lede">This is the kind of file I get from the field: free-typed names, "5 pcs" in a number column, a missing serial and a duplicate. Switch the rules on and off, and watch what each one catches.</p>
+          <p class="lede">This is the kind of file I get from the field: free-typed names, "5 pcs" in a number column, a missing serial and a duplicate. Switch the rules on and off, and watch what each one catches and how the report underneath changes. The report is only right once every rule has run.</p>
         </div>
       </div>
       <div class="card demo-card" id="demo-card">
@@ -626,6 +680,23 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
           <p class="total" id="total"></p>
           <p class="why" id="why"></p>
         </div>
+        <div class="report" aria-live="polite">
+          <div class="report-head">
+            <p class="report-t">The report this sheet produces</p>
+            <span class="pill" id="r-state"></span>
+          </div>
+          <div class="kpis r-kpis">
+            <div class="kpi"><b id="k-units"></b><span>Units counted</span></div>
+            <div class="kpi"><b id="k-schools"></b><span>Schools</span></div>
+            <div class="kpi"><b id="k-svc"></b><span>Serviceable</span></div>
+            <div class="kpi"><b id="k-act"></b><span>Repair or replace</span></div>
+          </div>
+          <div class="mock-charts r-charts">
+            <div class="panel"><div class="t">Units by school</div><div class="abars" id="ch-school"></div></div>
+            <div class="panel"><div class="t">Units by condition</div><div class="abars" id="ch-cond"></div></div>
+          </div>
+          <div class="finding" id="finding"></div>
+        </div>
       </div>
     </section>
 
@@ -641,7 +712,8 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
 
       <article class="card case" aria-labelledby="case-h">
         <div class="case-top">
-          <span class="pill pill-ok"><span class="dot" aria-hidden="true"></span>Shipped · public repo</span>
+          <span class="pill pill-ok"><span class="dot" aria-hidden="true"></span>Shipped</span>
+          <span class="pill pill-plan">Code private: built for learner data</span>
           <span class="pill pill-accent">Featured</span>
         </div>
         <h3 id="case-h">e-QUAART</h3>
@@ -696,12 +768,16 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
               <p class="label">Quality</p>
               <p class="muted">Unit and integration tests run against a seeded dataset, plus type checks and CI on every push.</p>
             </div>
+            <div class="block">
+              <p class="label">Why the code is private</p>
+              <p class="muted">It's built to hold learner records, so the code stays private. The story, data decisions and product docs are public, and I can walk you through the build.</p>
+            </div>
           </div>
         </div>
 
         <div class="case-links">
-          <a class="btn btn-primary btn-sm" href="https://github.com/CertJay/e-QUAART" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a>
-          <a class="btn btn-sm" href="https://github.com/CertJay/e-QUAART/blob/main/documentation.md" target="_blank" rel="noopener">Setup and docs<svg><use href="#i-ext"/></svg></a>
+          <a class="btn btn-primary btn-sm" href="https://github.com/CertJay/e-QUAART-showcase" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Read the story and docs</a>
+          <a class="btn btn-sm" href="https://github.com/CertJay/e-QUAART-showcase/blob/main/docs/how-it-works.md" target="_blank" rel="noopener">How it works<svg><use href="#i-ext"/></svg></a>
         </div>
       </article>
 
@@ -752,7 +828,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
             </div>
             <div class="block">
               <p class="label">Why it's private</p>
-              <p class="muted">It runs on internal records, so the code and data aren't public. A synthetic-data demo version is planned.</p>
+              <p class="muted">It runs on personnel and school records covered by the Data Privacy Act of 2012, so the code and data stay inside the office. The figures on this page are illustrative. A synthetic-data demo is planned.</p>
             </div>
           </div>
         </div>
@@ -764,7 +840,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
         <details class="more">
           <summary>See inside the app</summary>
 
-          <p class="label">Preview: DCP ICT Equipment tab (made-up numbers)</p>
+          <p class="label">Preview: DCP ICT Equipment tab · illustrative figures</p>
           <div class="mock" role="img" aria-label="Mock-up of the dashboard: four tabs, five summary tiles, a bar chart of equipment condition and a donut chart of package mix, all with illustrative numbers.">
             <div class="mock-tabs"><span>Personnel</span><span>Equipment</span><span class="on">DCP ICT Equipment</span><span>ISP Accounts</span></div>
             <div class="kpis">
@@ -796,7 +872,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
               </div>
             </div>
           </div>
-          <p class="disclaimer" role="note"><b>Disclaimer:</b> This preview is a mock-up. The layout and chart types match the app, but every number shown is made up. No internal records appear on this page.</p>
+          <p class="note">Layout and chart types match the app. The numbers are a model, not the office's data: the real records hold personal information, so they stay internal.</p>
 
           <p class="label">What each tab does</p>
           <div class="tabgrid">
@@ -836,7 +912,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
         <a class="btn btn-sm" href="resume/Miguel-Jay-Faustino-Resume.pdf" download><svg><use href="#i-down"/></svg>Resume (PDF)</a>
       </div>
       <div class="jobs">
-        <div class="job">
+        <div class="job" id="job-ba">
           <div class="when">Apr 2026 – Present<br>Remote</div>
           <div>
             <h3>Business Analyst</h3>
@@ -849,7 +925,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
             </ul>
           </div>
         </div>
-        <div class="job">
+        <div class="job" id="job-ict">
           <div class="when">Nov 2025 – Mar 2026</div>
           <div>
             <h3>ICT Support Staff</h3>
@@ -872,12 +948,14 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
             </ul>
           </div>
         </div>
-        <div class="job">
+        <div class="job" id="job-intern">
           <div class="when">Feb 2025 – May 2025</div>
           <div>
             <h3>IT Intern</h3>
             <div class="org">Department of Education, Dasmariñas</div>
             <ul>
+              <li>Developed a Personal Data Sheet system for CS Form No. 212 (Revised 2025). Entries are saved to a database and the official PDF is generated automatically, so any record can be looked up and downloaded in seconds.</li>
+              <li>Designed role-based access for users from IT administrators and each school's Administrative Officers II to teachers, principals and Education Program Supervisors.</li>
               <li>Installed and configured LAMP and LEMP server stacks on Ubuntu.</li>
               <li>Built network racks, terminated and tested Cat6E cabling, and configured routers for multi-ISP failover.</li>
             </ul>
@@ -891,6 +969,17 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
             <ul><li>Supported 500+ clients through permit applications and renewals while keeping sensitive records accurate.</li></ul>
           </div>
         </div>
+        <div class="job" id="job-research">
+          <div class="when">2019 – Present<br>Alongside studies and work</div>
+          <div>
+            <h3>Researcher</h3>
+            <div class="org">Independent · quantitative research support</div>
+            <ul>
+              <li>Helped 150+ student researchers from universities and colleges across the Philippines with quantitative studies, theses and dissertations.</li>
+              <li>Focused on the quantitative side: the research data, the statistical analysis and what the results mean.</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div class="card edu">
@@ -899,6 +988,11 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
           <p class="muted">Kolehiyo ng Lungsod ng Dasmariñas · 2021 – 2025</p>
         </div>
         <p class="muted">Dean's Lister all four years · Class President · Mentor Committee Head</p>
+        <ul class="awards" aria-label="Competition awards">
+          <li><b>1st place</b> Hackathon <span>3rd year</span></li>
+          <li><b>2nd place</b> SQL Mystery <span>4th year</span></li>
+          <li><b>4th place</b> Hackathon <span>2nd year</span></li>
+        </ul>
       </div>
     </section>
 
@@ -936,10 +1030,11 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
             <button type="button" class="chip" data-cat="data" data-label="Data and analysis" data-d="Visual data mining: preparing data and building predictive models without writing code.">RapidMiner</button>
             <button type="button" class="chip" data-cat="data" data-label="Data and analysis" data-d="Cleans and consolidates 46 school workbooks, and powers the dashboard&#x27;s data layer.">pandas</button>
             <button type="button" class="chip" data-cat="data" data-label="Data and analysis" data-d="Interactive charts in the School Division Dashboard.">Plotly</button>
+            <button type="button" class="chip" data-cat="data" data-label="Data and analysis" data-d="Quantitative research support for 150+ student theses and dissertations since 2019. DataSense Statistics with Excel certificate.">Statistics and quantitative research</button>
             <button type="button" class="chip" data-cat="data" data-label="Data and analysis" data-d="Rules for duplicates, blanks and wrong types, with a Data Issues report for anything unresolved.">Data validation</button>
             <button type="button" class="chip sel" data-cat="lang" data-label="Languages" data-d="Consolidation scripts and the School Division Dashboard.">Python</button>
             <button type="button" class="chip" data-cat="lang" data-label="Languages" data-d="e-QUAART, on both the server and the client.">TypeScript</button>
-            <button type="button" class="chip" data-cat="lang" data-label="Languages" data-d="This site&#x27;s live pipeline and data-cleaning demo.">JavaScript</button>
+            <button type="button" class="chip" data-cat="lang" data-label="Languages" data-d="This site&#x27;s role switcher and the data-cleaning demo with its live report.">JavaScript</button>
             <button type="button" class="chip" data-cat="lang" data-label="Languages" data-d="Earlier web projects on the LAMP stack.">PHP</button>
             <button type="button" class="chip" data-cat="lang" data-label="Languages" data-d="This site, built by hand with no framework.">HTML and CSS</button>
             <button type="button" class="chip" data-cat="db" data-label="Databases" data-d="LAMP and LEMP deployments at DepEd, and database-driven reporting.">MySQL</button>
@@ -1021,7 +1116,7 @@ table.cells{border-collapse:collapse;width:100%;min-width:740px;font-size:14px}
 <footer>
   <div class="wrap">
     <span>Miguel Jay Faustino · 2026</span>
-    <span>Last updated November 10, 2026</span>
+    <span>Last updated November 11, 2026</span>
   </div>
 </footer>
 

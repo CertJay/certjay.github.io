@@ -9,7 +9,7 @@ Live site: https://miguel-jay-faustino.vercel.app (also mirrored at https://cert
 | File | What it is |
 |---|---|
 | `index.html` | The whole site: one self-contained page (HTML, CSS, a few lines of JavaScript). No build step. |
-| `assets/site.js` | The interactive layer: live pipeline animation, data-cleaning demo, tech explorer, theme toggle. The page still reads fine without it. |
+| `assets/site.js` | The interactive layer: role lens in the hero (open a role with `?for=engineer`, `analytics-engineer`, `analyst` or `business-analyst`), data-cleaning demo with its live report, tech explorer, theme toggle. No looping animation. The page still reads fine without it. |
 | `blog/` | Build stories, one folder per post. |
 | `googlee3c8e2e4ca80c40c.html` | Google Search Console verification. Do not delete. |
 | `resume/Miguel-Jay-Faustino-Resume.pdf` | The one-page resume linked from the site. |
